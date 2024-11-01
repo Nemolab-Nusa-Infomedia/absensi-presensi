@@ -1,0 +1,33 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\DivisionController;
+use App\Http\Controllers\PresensiController;
+use App\Http\Controllers\DashboardController;
+
+
+// Authenticate
+Route::get('/', [AuthController::class, 'login'])->name('login');
+Route::post('check', [AuthController::class, 'check'])->name('check');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/reset-password', [AuthController::class, 'reset_password'])->name('reset-password');
+
+// Dashboard
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard-home');
+
+// SDM
+    // USER
+    Route::get('/user', [UserController::class, 'index'])->name('user-index');
+    Route::post('/user-store', [UserController::class, 'store'])->name('user-store');
+    // DIVISI
+    Route::get('/divisi', [DivisionController::class, 'index'])->name('divisi-index');
+    Route::post('/divisi/store', [DivisionController::class, 'store'])->name('divisi-store');
+    Route::get('/divisi-list', [DivisionController::class, 'getDivision'])->name('divisi-list');
+    Route::get('/divisi/fetch/{id}', [DivisionController::class, 'fetchData'])->name('divisi-fetch');
+    Route::post('/divisi/update/{id}', [DivisionController::class, 'updateData'])->name('divisi-update');
+
+// Presensi
+Route::get('/presensi', [PresensiController::class, 'index'])->name('presensi-home');

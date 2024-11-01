@@ -1,0 +1,25 @@
+body{
+    color: #003F77;
+}
+
+span.title-divisi{
+    font-size: 16px;
+}
+span.date{
+    font-size: 16px;
+}
+
+.content-presensi{
+    border-radius: 50px 50px 0 0;
+    background-color: white;
+    width: 100%;
+}
+
+@media (max-width: 768px){
+    span.title-divisi{
+        font-size: 10px;
+    }
+    span.date{
+        font-size: 9px;
+    }
+}
