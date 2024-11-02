@@ -28,6 +28,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
     Route::get('/divisi-list', [DivisionController::class, 'getDivision'])->name('divisi-list');
     Route::get('/divisi/fetch/{id}', [DivisionController::class, 'fetchData'])->name('divisi-fetch');
     Route::post('/divisi/update/{id}', [DivisionController::class, 'updateData'])->name('divisi-update');
+    Route::delete('/divisi/delete/{id}', [DivisionController::class, 'destroy'])->name('divisi-destroy');
 
 // Presensi
 Route::get('/presensi', [PresensiController::class, 'index'])->name('presensi-home');

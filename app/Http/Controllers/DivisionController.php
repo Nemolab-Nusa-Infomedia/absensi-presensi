@@ -41,6 +41,12 @@ class DivisionController extends Controller
     }
 
 
+    public function destroy($id){
+        $divisi = Divisi::findOrFail($id);
+        $divisi->delete();
+
+        return response()->json(['success' => 'Data berhasil dihapus!']);
+    }
 
     public function getDivision(Request $request){
         if($request->ajax()){
@@ -49,7 +55,7 @@ class DivisionController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
                     $edit  = "<button type='button' data-id='".$row->id."' class='btn btn-warning rounded-pill btn-sm btn-edit' data-bs-target='#edit-divisi' data-bs-toggle='modal'><i class='bx bx-edit'></i></button>";
-                    $delete = "<button type='button' class='btn btn-danger rounded-pill btn-sm' data-bs-target='#delete-divisi' data-bs-toggle='modal'><i class='bx bx-trash'></i></button>";
+                    $delete = "<button type='button' data-id='".$row->id."' class='btn btn-danger rounded-pill btn-sm btn-delete' data-bs-target='#delete-divisi' data-bs-toggle='modal'><i class='bx bx-trash'></i></button>";
                     return $edit.$delete;
                 })
                 ->rawColumns(['action'])
