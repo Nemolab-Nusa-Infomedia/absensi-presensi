@@ -131,7 +131,7 @@
     </div>
 </div>
 
-{{-- Delete Pegawai --}}
+{{-- Delete Divisi --}}
 <div class="modal fade" id="delete-divisi" aria-hidden="true" aria-labelledby="deleteDivisi" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -144,7 +144,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                <button type="submit" class="btn btn-danger">Hapus</button>
+                <button type="button" id="deleteDivisiBtn" class="btn btn-danger">Hapus</button>
             </div>
         </div>
     </div>
@@ -228,13 +228,11 @@
         });
         $('#division-table').on('click', '.btn-edit', function () {
             var id = $(this).data('id');
-            console.log(id);
             // Ambil data dari server untuk mengisi form
             $.ajax({
                 url: "/divisi/fetch/" + id,
                 type: 'GET',
                 success: function (data) {
-                    console.log(data);
                     $('#edit-divisi').modal('show');
                     $('#namaDivisiEdit').val(data.name);
                     $('#editDivisiForm').attr('action', '/divisi/update/' + id);
@@ -264,7 +262,38 @@
                         console.log(response);
                     }
                 });
+        });
+
+        $(document).on('click', '.btn-delete', function() {
+            var id = $(this).data('id');
+            console.log(id);
+            $('#delete-divisi').modal('show');
+
+            // Saat tombol konfirmasi delete di klik
+            $('#deleteDivisiBtn').off('click').on('click', function() {
+                $.ajax({
+                    url: "/divisi/delete/" + id,
+                    type: 'DELETE',
+                    data: {
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    success: function(response) {
+                        $('#delete-divisi').modal('hide');  // Tutup modal setelah berhasil hapus
+                        $('#division-table').DataTable().ajax.reload();  // Reload DataTables
+
+                        // Tampilkan pesan sukses
+                       $('#alertt').removeClass('d-none');
+                        $('#alertt-text').text(response.success);
+                        setTimeout(function() {
+                            $('#alertt').addClass('d-none');
+                        }, 2000);
+                    },
+                    error: function(xhr) {
+                        console.error(xhr.responseText);
+                    }
+                });
             });
+        });
     });
 </script>
 @endsection
