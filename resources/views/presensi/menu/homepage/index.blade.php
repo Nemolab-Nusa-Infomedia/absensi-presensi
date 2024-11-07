@@ -6,21 +6,13 @@
         <div class="row">
             <div class="col-6">
                 <a href="{{ route('presensi-scan') }}"><button class="btn btn-primary w-100 py-3">Masuk <br>  
-                    @if($user->check_in == null)
-                    -- : -- : -- WIB</button></a>
-                    @else
                     {{ $check_in }}
-                    @endif
                     </button>
                 </a>
             </div>
             <div class="col-6">
                 <a href="{{ route('presensi-scan') }}"><button class="btn btn-primary w-100 py-3">Pulang <br> 
-                     @if($user->check_in == null)
-                    -- : -- : -- WIB</button></a>
-                    @else
                     {{ $check_out }}
-                    @endif
                     </button>
                 </a>
             </div>

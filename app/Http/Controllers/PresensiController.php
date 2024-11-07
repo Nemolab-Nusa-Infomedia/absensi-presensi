@@ -13,8 +13,9 @@ class PresensiController extends Controller
     public function index(){
         $user_id = Auth::user()->id;
         $user = Attendances::where('user_id', $user_id)->first();
-        $check_in = Carbon::parse($user->check_in)->format('H:i:s');
-        $check_out = Carbon::parse($user->check_out)->format('H:i:s');
+
+        $check_in = $user->check_in ? Carbon::parse($user->check_in)->format('H:i:s') : '-- : -- : -- WIB';
+        $check_out = $user->check_out ? Carbon::parse($user->check_out)->format('H:i:s') : '-- : -- : -- WIB';
         return view('presensi.menu.homepage.index', compact('user','check_in','check_out'), [
             'title' => 'Presensi - Hugostudio Presensi',
         ]);
