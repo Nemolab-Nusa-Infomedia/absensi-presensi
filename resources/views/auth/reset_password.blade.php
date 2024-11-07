@@ -70,8 +70,14 @@
                                             <input type="password" id="password" name="password" class="form-control" placeholder="Buat password baru" />
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label" for="password">Ulangi Password Baru</label>
-                                            <input type="password" id="password" class="form-control" name="password_confirmation" placeholder="Buat password baru" />
+                                            <label class="form-label" for="password_confirmation">Ulangi Password Baru</label>
+                                            <input type="password" id="password_confirmation" class="form-control" name="password_confirmation" placeholder="Ulangi password baru" />
+                                        </div>
+
+                                        <!-- Tambahkan checkbox untuk Show Password -->
+                                        <div class="form-check mb-3">
+                                            <input type="checkbox" class="form-check-input" id="showPassword" onclick="togglePassword()">
+                                            <label class="form-check-label" for="showPassword">Tampilkan Kata Sandi</label>
                                         </div>
 
                                         <div class="mb-1 text-center d-grid">
@@ -80,8 +86,6 @@
                                             </button>
                                         </div>
                                     </form>
-
-
                                 </div>
                             </div>
                         </div>
@@ -90,6 +94,21 @@
                 <!-- end row -->
             </div>
         </div>
+
+        <script>
+            function togglePassword() {
+                var passwordField = document.getElementById("password");
+                var confirmPasswordField = document.getElementById("password_confirmation");
+
+                if (passwordField.type === "password") {
+                    passwordField.type = "text";
+                    confirmPasswordField.type = "text";
+                } else {
+                    passwordField.type = "password";
+                    confirmPasswordField.type = "password";
+                }
+            }
+            </script>
 
          <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
          <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>

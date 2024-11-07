@@ -69,9 +69,15 @@
                                             <input type="email" id="email" name="email" class="form-control" placeholder="Masukkan email" />
                                         </div>
                                         <div class="mb-3">
-                                            <a href="auth-password2.php" class="float-end text-muted text-unline-dashed ms-1">Reset password</a>
+                                            <a href="auth-password2.php" class="float-end text-muted text-underline-dashed ms-1">Reset password</a>
                                             <label class="form-label" for="password">Kata Sandi</label>
                                             <input type="password" id="password" class="form-control" name="password" placeholder="Masukkan kata sandi" />
+                                        </div>
+
+                                        <!-- Tambahkan checkbox untuk Show Password -->
+                                        <div class="form-check mb-3">
+                                            <input type="checkbox" class="form-check-input" id="showPassword" onclick="togglePassword()">
+                                            <label class="form-check-label" for="showPassword">Tampilkan Kata Sandi</label>
                                         </div>
 
                                         <div class="mb-1 text-center d-grid">
@@ -80,8 +86,6 @@
                                             </button>
                                         </div>
                                     </form>
-
-
                                 </div>
                             </div>
                         </div>
@@ -90,6 +94,17 @@
                 <!-- end row -->
             </div>
         </div>
+
+        <script>
+            function togglePassword() {
+                var passwordField = document.getElementById("password");
+                if (passwordField.type === "password") {
+                    passwordField.type = "text";
+                } else {
+                    passwordField.type = "password";
+                }
+            }
+            </script>
 
          <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
          <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
