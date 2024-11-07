@@ -6,19 +6,19 @@
         <div class="row">
             <div class="col">
                 <a href="{{ route('presensi-home') }}">
-                    <img src="{{ asset('assets/images/apk-presensi/menu/people.png') }}" alt="">
+                    <img src="{{ asset('assets/images/apk-presensi/menu/home.png') }}" alt="">
                     <p>Beranda</p>
                 </a>
             </div>
             <div class="col">
                 <a href="{{ route('laporan-presensi') }}">
-                    <img src="{{ asset('assets/images/apk-presensi/menu/people.png') }}" alt="">
+                    <img src="{{ asset('assets/images/apk-presensi/menu/laporan.png') }}" alt="">
                     <p>Laporan Presensi</p>
                 </a>
             </div>
             <div class="col">
                 <a href="">
-                    <img src="{{ asset('assets/images/apk-presensi/menu/people.png') }}" alt="">
+                    <img src="{{ asset('assets/images/apk-presensi/menu/cuti.png') }}" alt="">
                     <p>Izin Cuti</p>
                 </a>
             </div>
@@ -42,8 +42,8 @@
         <div class="card-body">
             <ul class="list-group">
                 <li class="list-group-item border-0 border-bottom px-0 pt-0">
-                    <div class="d-flex flex-wrap align-items-center">
-                        <img src="{{ asset('assets/images/users/dummy-avatar.jpg') }}" class="text-center" alt="">
+                    <div class="d-flex flex-wrap align-items-center justify-content-center">
+                        <img src="{{ asset('assets/images/users/dummy-avatar.jpg') }}" class="rounded-circle text-center" alt="">
                     </div>
                 </li>
                 <li class="list-group-item border-0 border-bottom px-0 pt-0">

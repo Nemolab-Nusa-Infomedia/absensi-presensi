@@ -19,19 +19,19 @@
             <div class="row">
                 <div class="col">
                     <a href="{{ route('presensi-home') }}">
-                        <img src="{{ asset('assets/images/apk-presensi/menu/people.png') }}" alt="">
+                        <img src="{{ asset('assets/images/apk-presensi/menu/home.png') }}" alt="">
                         <p>Beranda</p>
                     </a>
                 </div>
                 <div class="col">
                     <a href="{{ route('laporan-presensi') }}">
-                        <img src="{{ asset('assets/images/apk-presensi/menu/people.png') }}" alt="">
+                        <img src="{{ asset('assets/images/apk-presensi/menu/laporan.png') }}" alt="">
                         <p>Laporan Presensi</p>
                     </a>
                 </div>
                 <div class="col">
                     <a href="">
-                        <img src="{{ asset('assets/images/apk-presensi/menu/people.png') }}" alt="">
+                        <img src="{{ asset('assets/images/apk-presensi/menu/cuti.png') }}" alt="">
                         <p>Izin Cuti</p>
                     </a>
                 </div>
