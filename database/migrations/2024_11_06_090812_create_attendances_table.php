@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamp('check_in');
+            $table->timestamp('check_out');
             $table->decimal('latitude', 10, 8);
             $table->decimal('longitude', 11, 8);
+            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }

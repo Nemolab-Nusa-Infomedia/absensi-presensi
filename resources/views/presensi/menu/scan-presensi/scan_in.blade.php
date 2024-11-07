@@ -55,7 +55,7 @@
                 console.log('Scanned QR Code: ', qrMessage);
                 qrScanned = true; // Set variabel penanda menjadi true setelah pemindaian pertama
                 $.ajax({
-                    url: '/attendance',
+                    url: '/attendance-in',
                     type: 'POST',
                     data: {
                         _token: '{{ csrf_token() }}',
@@ -65,11 +65,11 @@
                     },
                     success: function(response) {
                         const newUrl = '/presensi';
-                        window.location.href = newUrl;
+                        // window.location.href = newUrl;
                     },
                     error: function(response) {
                         alert(response.responseJSON.message);
-                        qrScanned = false; // Set variabel penanda kembali ke false jika terjadi kesalahan
+                        qrScanned = false;
                     }
                 });
             }

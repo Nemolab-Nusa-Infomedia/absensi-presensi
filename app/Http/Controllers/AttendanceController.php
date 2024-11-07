@@ -2,14 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Location;
 use App\Models\Attendances;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\Facades\DataTables;
 
 class AttendanceController extends Controller
 {
-    public function store(Request $request){
+
+    public function index(){
+        return view('dashboard.menu.presensi.index', [
+            'title' => 'Presensi - Hugostudio Presensi'
+        ]);
+    }
+
+    public function storeAttendanceIn(Request $request){
         $user = Auth::user();
         $latitude = $request->input('latitude');
         $longitude = $request->input('longitude');
@@ -18,7 +27,7 @@ class AttendanceController extends Controller
         $officeLocation = Location::first(); // Mengambil lokasi kantor dari tabel
 
         // Tentukan radius presensi (dalam meter)
-        $radius = 100; // Misalnya 100 meter
+        $radius = 50;
 
         if ($this->isWithinRadius($officeLocation->latitude, $officeLocation->longitude, $latitude, $longitude, $radius)) {
             Attendances::create([
@@ -27,6 +36,30 @@ class AttendanceController extends Controller
                 'latitude' => $latitude,
                 'longitude' => $longitude,
             ]);
+
+            return response()->json(['message' => 'Presensi berhasil!'], 200);
+        }
+
+        return response()->json(['message' => 'Lokasi Anda tidak sesuai untuk presensi.'], 403);
+    }
+
+    public function storeAttendanceOut(Request $request){
+        $user = Auth::user();
+        $latitude = $request->input('latitude');
+        $longitude = $request->input('longitude');
+
+        // Koordinat lokasi kantor yang diizinkan
+        $officeLocation = Location::first(); // Mengambil lokasi kantor dari tabel
+
+        // Tentukan radius presensi (dalam meter)
+        $radius = 50;
+
+        if ($this->isWithinRadius($officeLocation->latitude, $officeLocation->longitude, $latitude, $longitude, $radius)) {
+            $atten = Attendances::find($user->id);
+            $atten->check_out = now();
+            $atten->latitude = $latitude;
+            $atten->longitude = $longitude;
+            $atten->save();
 
             return response()->json(['message' => 'Presensi berhasil!'], 200);
         }
@@ -48,5 +81,22 @@ class AttendanceController extends Controller
         $distance = $earthRadius * $c;
 
         return $distance <= $radius;
+    }
+
+
+    public function getAttendances(Request $request){
+        if($request->ajax()){
+            $data = Attendances::with('users')->get();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('users', function($row){
+                    return $row->users->name ?? '-';
+                })
+                ->addColumn('check_in', function($row){
+                    return Carbon::parse($row->check_in)->format('H:i:s');
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
     }
 }
