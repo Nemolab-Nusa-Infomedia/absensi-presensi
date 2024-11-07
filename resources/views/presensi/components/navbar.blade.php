@@ -1,20 +1,33 @@
-<header class="container-xxl">
-    <div class="d-flex justify-content-between p-2">
-        <img src="{{ url('assets/images/logo/hugostudio.png') }}" width="100px" alt="">
-        <h3 class="text-white"><i class='bx bxs-bell'></i></h3>
-    </div>
-    <div class="d-flex justify-content-between px-1 py-3 px-md-4">
-        <div class="d-flex align-items-center gap-2">
-            <img src="{{ asset('assets/images/users/dummy-avatar.jpg') }}" class="rounded-circle img-fluid d-block d-sm-block" style="width: 50px;" alt="">
-            <div class="row text-white text-start">
-                <span class="fw-bold fs-5 fs-md-4">{{ Auth::user()->name }}</span>
-                <span class="title-divisi">{{ Auth::user()->divisis->name }}</span>
+<header class="text-white text-center py-4" style="background-color: #007bff;">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="logo d-flex align-items-center">
+                <i class="fas fa-home fa-lg mr-2"></i>
+                <img src="{{ asset('assets/images/logo/hugostudio.png') }}" width="70px" alt="">
             </div>
+            <i class='bx bxs-bell'></i>
         </div>
-        <div class="d-flex align-items-center gap-2">
-            <div class="row text-white text-end">
-                <span id="time" class="fw-bold fs-5 fs-md-4"></span>
-                <span id="date" class="date"></span>    
+        <div class="profile mt-3 text-center">
+            <div class="d-flex flex-wrap align-items-center gap-2">
+                <img src="{{ asset('assets/images/users/dummy-avatar.jpg') }}" alt="" class="rounded-circle avatar-md" />
+                <div class="d-block">
+                    <h5 class="mb-1 text-start text-white">
+                        Vindra Arya Yulian
+                    </h5>
+                    <h6 class="mb-0 text-start text-white">
+                        Web Developer
+                    </h6>
+                </div>
+                <div class="ms-auto">
+                    <div class="d-block">
+                        <h5 id="time" class="mb-1 text-end text-white"> aman anjirt yang penting minta maaf
+
+                        </h5>
+                        <h6 id="date" class="mb-0 text-end text-white">
+
+                        </h6>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

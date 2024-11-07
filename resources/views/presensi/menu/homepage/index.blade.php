@@ -1,81 +1,89 @@
 @extends('presensi.components.layout')
 
 @section('content')
-<div class="text-center mt-2" style="color: #003F77">
-    <span class="fw-bold fs-3 py-2">Hallo 👋 {{ Auth::user()->name }}</span class="fw-bold fs-3">
-    <p>Semangat Kerja ya!</p>
-</div>
-<div class="presensi px-3">
-    <div class="card">
-        <div class="card-body">
-            <div class="d-flex justify-content-center text-center gap-2">
-                <a href="{{ route('presensi-scan') }}" class="btn btn-primary d-flex align-items-center justify-content-center text-center gap-1">
-                    <i class='bx bx-arrow-to-right fs-4'></i>
-                    <div class="row text-center">
-                        <span>Masuk</span>
-                        <span style="font-size: 8px">08:42:05 WIB</span>
-                    </div>
-                </a>
-                <a href="#" class="btn btn-primary d-flex align-items-center justify-content-center text-center gap-1">
-                    <i class='bx bx-arrow-from-right fs-4'></i>
-                    <div class="row text-center">
-                        <span>Keluar</span>
-                        <span style="font-size: 8px">08:42:05 WIB</span>
-                    </div>
-                </a>
+    <!-- Attendance Buttons -->
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-6">
+                <button class="btn btn-primary w-100 py-3">Masuk <br> -- : -- : -- WIB</button>
+            </div>
+            <div class="col-6">
+                <button class="btn btn-primary w-100 py-3">Pulang <br> -- : -- : -- WIB</button>
             </div>
         </div>
     </div>
-</div>
 
-<div class="row col-12 col-md-12 mx-auto justify-content-center">
-    <div class="col-4 col-md-4 text-center">
-        <img src="{{ url('assets/images/apk-presensi/menu/people.png') }}" alt="">
-        <p>Laporan Presensi</p>
-    </div>
-    <div class="col-4 col-md-4 text-center">
-        <img src="{{ url('assets/images/apk-presensi/menu/people.png') }}" alt="">
-        <p>Izin/Cuti</p>
-    </div>
-    <div class="col-4 col-md-4 text-center">
-        <img src="{{ url('assets/images/apk-presensi/menu/people.png') }}" alt="">
-        <p>Akun</p>
-    </div>
-</div>
+    <!-- Employee List -->
+    <section class="text-center my-4">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <a href="{{ route('presensi-home') }}">
+                        <img src="{{ asset('assets/images/apk-presensi/menu/people.png') }}" alt="">
+                        <p>Beranda</p>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="{{ route('laporan-presensi') }}">
+                        <img src="{{ asset('assets/images/apk-presensi/menu/people.png') }}" alt="">
+                        <p>Laporan Presensi</p>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="">
+                        <img src="{{ asset('assets/images/apk-presensi/menu/people.png') }}" alt="">
+                        <p>Izin Cuti</p>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="{{ route('akun') }}">
+                        <img src="{{ asset('assets/images/apk-presensi/menu/people.png') }}" alt="">
+                        <p>Akun</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="pengumuman p-2">
-    <div class="d-flex justify-content-between">
-        <h3>Pengumuman</h3>
-        <a href="#">Lihat Lainnya</a>
-    </div>
-    <div class="row  gap-2">
-        <div class="col-12">
-            <div class="d-flex gap-2 align-items-center">
-                <img src="{{ url('assets/images/apk-presensi/pengumuman/image1.png') }}" alt="">
-                <div class="text-start">
-                    <h3>Work From Home</h3>
-                    <p>Rabu, Kamis, Jumat di minggu ke 3 & 4 jadwalnya WFH</p>
+    <!-- Announcements -->
+    <section class="container mb-0 py-3">
+        <div class="d-flex justify-content-between">
+            <h5>Pengumuman</h5>
+            <a href="#">Lihat lainnya</a>
+        </div>
+        <div class="row col-md-12">
+            <div class="col-md-3">
+                <div class="announcement-card my-2 p-3 mb-2">
+                    <img src="{{ asset('assets/images/apk-presensi/pengumuman/image1.png') }}" class="img-fluid rounded" alt="WFH Image">
+                    <h6 class="mt-2">Work From Home</h6>
+                    <p>Rabu, Kamis, Jumat di minggu ke-3 & ke-4 jadwalnya WFH</p>
+                    <small class="text-muted">Hugo Studio - 26/09/2024</small>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="announcement-card my-2 p-3 mb-2">
+                    <img src="{{ asset('assets/images/apk-presensi/pengumuman/image1.png') }}" class="img-fluid rounded" alt="WFH Image">
+                    <h6 class="mt-2">Work From Home</h6>
+                    <p>Rabu, Kamis, Jumat di minggu ke-3 & ke-4 jadwalnya WFH</p>
+                    <small class="text-muted">Hugo Studio - 26/09/2024</small>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="announcement-card my-2 p-3 mb-2">
+                    <img src="{{ asset('assets/images/apk-presensi/pengumuman/image1.png') }}" class="img-fluid rounded" alt="WFH Image">
+                    <h6 class="mt-2">Work From Home</h6>
+                    <p>Rabu, Kamis, Jumat di minggu ke-3 & ke-4 jadwalnya WFH</p>
+                    <small class="text-muted">Hugo Studio - 26/09/2024</small>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="announcement-card my-2 p-3 mb-2">
+                    <img src="{{ asset('assets/images/apk-presensi/pengumuman/image1.png') }}" class="img-fluid rounded" alt="WFH Image">
+                    <h6 class="mt-2">Work From Home</h6>
+                    <p>Rabu, Kamis, Jumat di minggu ke-3 & ke-4 jadwalnya WFH</p>
+                    <small class="text-muted">Hugo Studio - 26/09/2024</small>
                 </div>
             </div>
         </div>
-        <div class="col-12">
-            <div class="d-flex gap-2 align-items-center">
-                <img src="{{ url('assets/images/apk-presensi/pengumuman/image1.png') }}" alt="">
-                <div class="text-start">
-                    <h3>Work From Home</h3>
-                    <p>Rabu, Kamis, Jumat di minggu ke 3 & 4 jadwalnya WFH</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="d-flex gap-2 align-items-center">
-                <img src="{{ url('assets/images/apk-presensi/pengumuman/image1.png') }}" alt="">
-                <div class="text-start">
-                    <h3>Work From Home</h3>
-                    <p>Rabu, Kamis, Jumat di minggu ke 3 & 4 jadwalnya WFH</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    </section>
 @endsection

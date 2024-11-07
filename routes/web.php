@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AkunController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
@@ -7,7 +8,7 @@ use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AttendanceController;
-
+use App\Http\Controllers\LaporanPresensiController;
 
 // Authenticate
 Route::get('/', [AuthController::class, 'login'])->name('login');
@@ -39,3 +40,6 @@ Route::post('/attendance', [AttendanceController::class, 'store'])->name('attend
 // Presensi
 Route::get('/presensi', [PresensiController::class, 'index'])->name('presensi-home');
 Route::get('/presensi/scan', [PresensiController::class, 'scan'])->name('presensi-scan');
+
+Route::get('/laporan-presensi', [LaporanPresensiController::class, 'index'])->name('laporan-presensi');
+Route::get('/akun', [AkunController::class, 'index'])->name('akun');
