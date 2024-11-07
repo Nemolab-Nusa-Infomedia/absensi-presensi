@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class PresensiController extends Controller
 {
     public function index(){
-        return view('presensi.index', [
+        return view('presensi.menu.homepage.index', [
             'title' => 'Presensi - Hugostudio Presensi'
         ]);
     }
