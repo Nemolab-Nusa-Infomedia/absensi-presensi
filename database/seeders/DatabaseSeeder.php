@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Super Hugo',
             'email' => 'superadmin@hugostudio.id',
             'email_verified_at' => now(),
+            'role_user' => 'superadmin',
             'password' => Hash::make('merdeka17'),
             'is_changed' => true
         ]);

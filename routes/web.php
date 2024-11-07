@@ -14,6 +14,7 @@ Route::post('check', [AuthController::class, 'check'])->name('check');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/reset-password', [AuthController::class, 'reset_password'])->name('reset-password');
+Route::post('/reset', [AuthController::class, 'reset'])->name('reset');
 
 // Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard-home');
@@ -22,6 +23,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
     // USER
     Route::get('/user', [UserController::class, 'index'])->name('user-index');
     Route::post('/user-store', [UserController::class, 'store'])->name('user-store');
+    Route::get('/user-list', [UserController::class, 'getUser'])->name('user-list');
     // DIVISI
     Route::get('/divisi', [DivisionController::class, 'index'])->name('divisi-index');
     Route::post('/divisi/store', [DivisionController::class, 'store'])->name('divisi-store');
@@ -29,6 +31,9 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
     Route::get('/divisi/fetch/{id}', [DivisionController::class, 'fetchData'])->name('divisi-fetch');
     Route::post('/divisi/update/{id}', [DivisionController::class, 'updateData'])->name('divisi-update');
     Route::delete('/divisi/delete/{id}', [DivisionController::class, 'destroy'])->name('divisi-destroy');
+
+
+Route::post('/attendance', [AttendanceController::class, 'store'])->name('attendance.store');
 
 // Presensi
 Route::get('/presensi', [PresensiController::class, 'index'])->name('presensi-home');

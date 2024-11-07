@@ -27,7 +27,7 @@
         <script src="{{ secure_asset('assets/js/config.js') }}"></script>
 
         {{-- css --}}
-        <link rel="stylesheet" href="{{ secure_asset('assets/css/main.css') }}">
+        <link rel="stylesheet" href="{{ secure_asset('assets/css/apk-presensi/main.css') }}">
 
         {{-- locatioon --}}
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
@@ -44,29 +44,12 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
 
     </head>
-    <body>
+    <body style="background-color: #2585DB">
         <div class="wrapper">
-            @include('components.navbar')
-
-            @include('components.sidebar')
-            <div class="page-content">
-                <div class="container-xxl">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="page-title-box">
-                                <h4 class="mb-0 fw-semibold">{{ $title }}</h4>
-                                <ol class="breadcrumb mb-0">
-                                    <li class="breadcrumb-item">
-                                        <a href="javascript: void(0);">{{ $title }}</a>
-                                    </li>
-                                    <li class="breadcrumb-item active"></li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                    @yield('content')
-                </div>
-               @include('components.footer')
+            @include('components.PresensiView.components.navbar')
+            
+            <div class="content-presensi">
+                @yield('content')
             </div>
         </div>
 
@@ -78,6 +61,5 @@
 
         <!-- App Javascript (Require in all Page) -->
         <script src="{{ secure_asset('assets/js/app.js') }}"></script>
-
     </body>
 </html>

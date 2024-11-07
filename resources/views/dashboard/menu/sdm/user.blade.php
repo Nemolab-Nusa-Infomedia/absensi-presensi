@@ -47,6 +47,7 @@
                         <thead class="bg-light bg-opacity-50">
                             <tr>
                                 <th class="border-0 py-2">No</th>
+                                <th class="border-0 py-2">Nama</th>
                                 <th class="border-0 py-2">Email</th>
                                 <th class="border-0 py-2">Jenis Kelamin</th>
                                 <th class="border-0 py-2">Alamat</th>
@@ -231,7 +232,7 @@
             serverSide: true,
             paging: false, // Disable default pagination
             ajax: {
-                url: "",
+                url: "{{ route('user-list') }}",
                 data: function(d) {
                     d.start = (currentPage - 1) * pageLength; // Tentukan offset data berdasarkan halaman saat ini
                     d.length = pageLength; // Tentukan jumlah data per halaman
@@ -240,9 +241,9 @@
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                 {data: 'name', name: 'name'},
-                {data: 'companies', name: 'companies'},
                 {data: 'email', name: 'email'},
-                {data: 'roles', name: 'roles'},
+                {data: 'gender', name: 'gender'},
+                {data: 'address', name: 'address'},
                 {data: 'divisis', name: 'divisis'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
