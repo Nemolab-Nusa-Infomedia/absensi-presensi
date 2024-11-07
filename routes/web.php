@@ -1,12 +1,14 @@
 <?php
 
+use App\Http\Controllers\AkunController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\DashboardController;
-
+use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\LaporanPresensiController;
 
 // Authenticate
 Route::get('/', [AuthController::class, 'login'])->name('login');
@@ -18,6 +20,8 @@ Route::post('/reset', [AuthController::class, 'reset'])->name('reset');
 
 // Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard-home');
+
+
 
 // SDM
     // USER
@@ -33,7 +37,14 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
     Route::delete('/divisi/delete/{id}', [DivisionController::class, 'destroy'])->name('divisi-destroy');
 
 
-Route::post('/attendance', [AttendanceController::class, 'store'])->name('attendance.store');
+Route::post('/attendance', [AttendanceController::class, 'storeAttendanceIn'])->name('attendance.store.in');
 
 // Presensi
 Route::get('/presensi', [PresensiController::class, 'index'])->name('presensi-home');
+Route::get('/presensi/scan/in', [PresensiController::class, 'scanIn'])->name('presensi-scan');
+
+Route::get('/daftar-hadir', [AttendanceController::class,'index'])->name('daftar-hadir');
+Route::get('/daftar-hadir-list', [AttendanceController::class,'getAttendances'])->name('daftar-hadir-list');
+
+Route::get('/laporan-presensi', [LaporanPresensiController::class, 'index'])->name('laporan-presensi');
+Route::get('/akun', [AkunController::class, 'index'])->name('akun');

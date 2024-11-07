@@ -32,7 +32,7 @@
                 <div class="collapse" id="sidebarPresensi">
                     <ul class="nav sub-navbar-nav">
                         <li class="sub-nav-item">
-                            <a class="sub-nav-link" href="" >Absensi</a>
+                            <a class="sub-nav-link" href="{{ route('daftar-hadir') }}" >Absensi</a>
                         </li>
                         <li class="sub-nav-item">
                             <a class="sub-nav-link" href="" >Jadwal</a>
