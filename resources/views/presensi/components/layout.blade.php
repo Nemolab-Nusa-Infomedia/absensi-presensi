@@ -44,14 +44,20 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
 
     </head>
-    <body style="background-color: #2585DB">
-        <div class="wrapper">
-            @include('presensi.components.navbar')
+    <body style="background-color: #007bff;">
+        <!-- Header -->
+        @include('presensi.components.navbar')
 
-            <div class="content-presensi">
-                @yield('content')
-            </div>
-        </div>
+        <!-- Greeting -->
+        <section  class="bg-white content-presensi">
+            <section class="text-center py-3">
+                <h3>Hallo 👋 {{ Auth::user()->name }}</h3>
+                <p>Semangat kerja ya!</p>
+            </section>
+
+            @yield('content')
+
+        </section>
 
          <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
          <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>

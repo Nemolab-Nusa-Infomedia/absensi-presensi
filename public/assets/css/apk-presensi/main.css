@@ -1,25 +1,33 @@
-body{
-    color: #003F77;
+header .profile img {
+    border: 3px solid white;
 }
 
-span.title-divisi{
-    font-size: 16px;
+button.btn-primary {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    font-size: 1rem;
 }
-span.date{
-    font-size: 16px;
+
+.announcement-card {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.announcement-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    .profile h5, .profile p {
+        font-size: 0.9rem;
+    }
 }
 
 .content-presensi{
-    border-radius: 50px 50px 0 0;
-    background-color: white;
-    width: 100%;
-}
-
-@media (max-width: 768px){
-    span.title-divisi{
-        font-size: 10px;
-    }
-    span.date{
-        font-size: 9px;
-    }
+    height: 100%;
+    border-radius: 70px 70px 0 0
 }
