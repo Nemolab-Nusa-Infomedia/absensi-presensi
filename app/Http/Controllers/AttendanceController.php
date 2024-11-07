@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Location;
+use App\Models\Attendances;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AttendanceController extends Controller
 {
     public function store(Request $request){
-        $user = auth()->user();
+        $user = Auth::user();
         $latitude = $request->input('latitude');
         $longitude = $request->input('longitude');
 
@@ -18,7 +21,7 @@ class AttendanceController extends Controller
         $radius = 100; // Misalnya 100 meter
 
         if ($this->isWithinRadius($officeLocation->latitude, $officeLocation->longitude, $latitude, $longitude, $radius)) {
-            Attendance::create([
+            Attendances::create([
                 'user_id' => $user->id,
                 'check_in' => now(),
                 'latitude' => $latitude,

@@ -11,4 +11,10 @@ class PresensiController extends Controller
             'title' => 'Presensi - Hugostudio Presensi'
         ]);
     }
+
+    public function scan(){
+        return view('presensi.scan', [
+            'title' => 'Presensi - Hugostudio Presensi'
+        ]);
+    }
 }

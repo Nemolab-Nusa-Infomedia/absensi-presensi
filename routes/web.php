@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AttendanceController;
 
 
 // Authenticate
@@ -37,3 +38,4 @@ Route::post('/attendance', [AttendanceController::class, 'store'])->name('attend
 
 // Presensi
 Route::get('/presensi', [PresensiController::class, 'index'])->name('presensi-home');
+Route::get('/presensi/scan', [PresensiController::class, 'scan'])->name('presensi-scan');

@@ -43,10 +43,15 @@ class AuthController extends Controller
         $user = User::where('email', $request->email)->first();
         $user->update([
             'password' => Hash::make($request->password),
-            'is_change' => 'change',
+            'is_changed' => true,
         ]);
 
         Auth::login($user);
         return redirect()->route('presensi-home');
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('login');
     }
 }
