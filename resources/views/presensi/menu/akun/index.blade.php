@@ -51,8 +51,7 @@
                         <h5 class="me-2 fw-medium mb-0">
                             Nama :
                         </h5>
-                        <span class="fs-14 text-muted">Jeannette C.
-                            Vindra Arya Yulian</span>
+                        <span class="fs-14 text-muted">{{ Auth::user()->name }}</span>
                     </div>
                 </li>
                 <li class="list-group-item border-0 border-bottom px-0">
@@ -60,7 +59,7 @@
                         <h5 class="me-2 fw-medium mb-0">
                             Email :
                         </h5>
-                        <span class="fs-14 text-muted">jeannette@rhyta.com</span>
+                        <span class="fs-14 text-muted">{{ Auth::user()->email }}</span>
                     </div>
                 </li>
                 <li class="list-group-item border-0 border-bottom px-0">
@@ -68,8 +67,7 @@
                         <h5 class="me-2 mb-0 fw-medium">
                             Divisi :
                         </h5>
-                        <span class="fs-14 text-muted">Full Stack
-                            Developer</span>
+                        <span class="fs-14 text-muted">{{ Auth::user()->divisis->name }}</span>
                     </div>
                 </li>
                 <li class="list-group-item border-0 border-bottom px-0">
@@ -77,27 +75,27 @@
                         <h5 class="me-2 mb-0 fw-medium">
                             Alamat :
                         </h5>
-                        <span class="fs-14 text-muted">Jalan Kenanga no.17 Grendeng Rt 02/01, Purwokerto Utara</span>
+                        <span class="fs-14 text-muted">{{ Auth::user()->address }}</span>
                     </div>
                 </li>
                 <li class="list-group-item border-0 border-bottom px-0">
                     <div class="d-flex flex-wrap align-items-center">
                         <h5 class="me-2 mb-0 fw-medium">
-                            <a href="" class="text-dark">Change Personal Info</a>
+                            <a href="" class="btn btn-info disabled">Change Personal Info</a>
                         </h5>
                     </div>
                 </li>
                 <li class="list-group-item border-0 border-bottom px-0">
                     <div class="d-flex flex-wrap align-items-center">
                         <h5 class="me-2 mb-0 fw-medium">
-                            <a href="" class="text-warning">Change Password</a>
+                            <a href="" class="btn btn-orange">Change Password</a>
                         </h5>
                     </div>
                 </li>
                 <li class="list-group-item border-0 border-bottom px-0">
                     <div class="d-flex flex-wrap align-items-center">
                         <h5 class="me-2 mb-0 fw-medium">
-                            <a href="{{ route('logout') }}" class="text-danger">Logout</a>
+                            <a href="{{ route('logout') }}" class="btn btn-danger">Logout</a>
                         </h5>
                     </div>
                 </li>

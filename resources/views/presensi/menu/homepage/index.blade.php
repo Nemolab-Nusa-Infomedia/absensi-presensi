@@ -5,14 +5,19 @@
     <div class="container text-center">
         <div class="row">
             <div class="col-6">
-                <button class="btn btn-primary w-100 py-3">Masuk <br> -- : -- : -- WIB</button>
+                <a href="{{ route('presensi-scan') }}"><button class="btn btn-primary w-100 py-3">Masuk <br>  
+                    {{ $check_in }}
+                    </button>
+                </a>
             </div>
             <div class="col-6">
-                <button class="btn btn-primary w-100 py-3">Pulang <br> -- : -- : -- WIB</button>
+                <a href="{{ route('presensi-scan') }}"><button class="btn btn-primary w-100 py-3">Pulang <br> 
+                    {{ $check_out }}
+                    </button>
+                </a>
             </div>
         </div>
     </div>
-
     <!-- Employee List -->
     <section class="text-center my-4">
         <div class="container">

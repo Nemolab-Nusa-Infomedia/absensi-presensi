@@ -69,7 +69,7 @@
                     },
                     error: function(response) {
                         alert(response.responseJSON.message);
-                        qrScanned = false; // Set variabel penanda kembali ke false jika terjadi kesalahan
+                        qrScanned = false;
                     }
                 });
             }

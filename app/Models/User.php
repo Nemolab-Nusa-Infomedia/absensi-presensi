@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Divisi;
+use App\Models\Attendances;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -58,5 +59,10 @@ class User extends Authenticatable
     public function divisis(): BelongsTo
     {
         return $this->belongsTo(Divisi::class, 'divisi_id', 'id');
+    }
+
+    public function attendances(): BelongsTo
+    {
+        return $this->belongsTo(Attendances::class, 'id', 'user_id');
     }
 }

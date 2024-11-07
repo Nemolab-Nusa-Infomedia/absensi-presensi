@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('role_user')->nullable();
             $table->integer('otp')->nullable();
             $table->text('address')->nullable();
-            $table->text('total_terlambat')->nullable();
             $table->unsignedBigInteger('divisi_id')->nullable();
             $table->foreign('divisi_id')->references('id')->on('divisis');
             $table->rememberToken();

@@ -12,29 +12,29 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{ url('assets/images/logo/logo-hs.png') }}" />
+        <link rel="shortcut icon" href="{{ secure_asset('assets/images/logo/logo-hs.png') }}" />
 
         <!-- Vendor css (Require in all Page) -->
-        <link href="{{ url('assets/css/vendor.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ secure_asset('assets/css/vendor.min.css') }}" rel="stylesheet" type="text/css" />
 
         <!-- Icons css (Require in all Page) -->
-        <link href="{{ url('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ secure_asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
 
         <!-- App css (Require in all Page) -->
-        <link href="{{ url('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ secure_asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
 
         <!-- Theme Config js (Require in all Page) -->
-        <script src="{{ url('assets/js/config.js') }}"></script>
+        <script src="{{ secure_asset('assets/js/config.js') }}"></script>
 
         {{-- css --}}
-        <link rel="stylesheet" href="{{ url('assets/css/main.css') }}">
+        <link rel="stylesheet" href="{{ secure_asset('assets/css/main.css') }}">
 
         {{-- locatioon --}}
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
         <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 
         {{-- costum css yajra --}}
-        {{-- <link href="{{ url('assets/css/costum-yajra/main.css') }}" rel="stylesheet" type="text/css" /> --}}
+        {{-- <link href="{{ secure_asset('assets/css/costum-yajra/main.css') }}" rel="stylesheet" type="text/css" /> --}}
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -53,7 +53,7 @@
                             <div class="card-body px-3 py-5">
                                 <div class="mx-auto mb-4 text-center auth-logo">
                                     <a href="index.php" class="logo-dark">
-                                        <img src="{{ url('assets/images/logo/hugostudio.png') }}" height="30" class="me-1" alt="logo sm" />
+                                        <img src="{{ secure_asset('assets/images/logo/hugostudio.png') }}" height="30" class="me-1" alt="logo sm" />
                                     </a>
                                 </div>
 
@@ -110,31 +110,31 @@
          <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
 
         <!-- Vendor Javascript (Require in all Page) -->
-        <script src="{{ url('assets/js/vendor.js') }}"></script>
+        <script src="{{ secure_asset('assets/js/vendor.js') }}"></script>
 
         <!-- App Javascript (Require in all Page) -->
-        <script src="{{ url('assets/js/app.js') }}"></script>
+        <script src="{{ secure_asset('assets/js/app.js') }}"></script>
 
 
         <!-- Vector Map Js -->
-        <script src="{{ url('assets/vendor/jsvectormap/js/jsvectormap.min.js') }}"></script>
-        <script src="{{ url('assets/vendor/jsvectormap/maps/world-merc.js') }}"></script>
-        <script src="{{ url('assets/vendor/jsvectormap/maps/world.js') }}"></script>
+        <script src="{{ secure_asset('assets/vendor/jsvectormap/js/jsvectormap.min.js') }}"></script>
+        <script src="{{ secure_asset('assets/vendor/jsvectormap/maps/world-merc.js') }}"></script>
+        <script src="{{ secure_asset('assets/vendor/jsvectormap/maps/world.js') }}"></script>
 
         <!-- Dashboard Js -->
-        <script src="{{ url('assets/js/pages/dashboard.analytics.js') }}"></script>
+        <script src="{{ secure_asset('assets/js/pages/dashboard.analytics.js') }}"></script>
 
         <!-- Apex Chart Column Demo js -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.0/dayjs.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.0/plugin/quarterOfYear.min.js"></script>
-        <script src="{{ url('assets/js/components/apexchart-column.js') }}"></script>
+        <script src="{{ secure_asset('assets/js/components/apexchart-column.js') }}"></script>
 
         <!-- Apex Chart line Demo js -->
         <script src="https://apexcharts.com/samples/assets/stock-prices.js"></script>
         <script src="https://apexcharts.com/samples/assets/irregular-data-series.js"></script>
-        <script src="{{ url('assets/js/components/apexchart-line.js') }}"></script>
+        <script src="{{ secure_asset('assets/js/components/apexchart-line.js') }}"></script>
 
         <!-- Dashboard Js -->
-        <script src="{{ url('assets/js/pages/dashboard.sales.js') }}"></script>
+        <script src="{{ secure_asset('assets/js/pages/dashboard.sales.js') }}"></script>
     </body>
 </html>
