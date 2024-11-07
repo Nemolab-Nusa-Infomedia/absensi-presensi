@@ -66,7 +66,7 @@
 
             .qr-code-container {
                 width: 100%;
-                height: 300px; /* menyesuaikan ketinggian */
+                height: 500px; /* menyesuaikan ketinggian */
             }
         }
     </style>
@@ -74,7 +74,7 @@
 <body>
     <div class="container">
         <div class="row justify-content-center">
-            <a href="#" class="text-decoration-none d-flex align-items-center mb-3" style="color: #2D4A8A;">
+            <a href="{{ route('presensi-home') }}" class="text-decoration-none d-flex align-items-center mb-3 py-3" style="color: #2D4A8A;">
                 <i class="bi bi-arrow-left fs-5 me-2"></i> Kembali
             </a>
             <h4 class="title">Scan QR Code</h4>
