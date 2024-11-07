@@ -68,64 +68,73 @@
         </div>
     </div>
 
-<script>
-    var qrScanned = false;
+    <script>
+        var qrScanned = false;
 
-    function requestLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(onLocationSuccess, onLocationError);
-        } else {
-            alert("Geolocation tidak didukung di browser Anda.");
-        }
-    }
-
-    function onLocationSuccess(position) {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
-        startQrScanner(latitude, longitude);
-    }
-
-    function onLocationError(error) {
-        alert("Aktifkan lokasi untuk menggunakan fitur ini.");
-        console.log("Error mendapatkan lokasi: ", error.message);
-    }
-
-    function startQrScanner(latitude, longitude) {
-        function onScanSuccess(qrMessage) {
-            if (!qrScanned) {
-                qrScanned = true;
-                $.ajax({
-                    url: '/attendance',
-                    type: 'POST',
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        qr_code: qrMessage,
-                        latitude: latitude,
-                        longitude: longitude
-                    },
-                    success: function(response) {
-                        window.location.href = '/presensi';
-                    },
-                    error: function(response) {
-                        alert(response.responseJSON.message);
-                        qrScanned = false;
-                    }
-                });
+        function requestLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(onLocationSuccess, onLocationError);
+            } else {
+                alert("Geolocation tidak didukung di browser Anda.");
             }
         }
 
-        function onScanError(errorMessage) {
-            console.log('QR Code Scan Error: ', errorMessage);
+        function onLocationSuccess(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            startQrScanner(latitude, longitude);
         }
 
-        var html5QrcodeScanner = new Html5QrcodeScanner(
-            "reader", { fps: 1, qrbox: 250 });
-        html5QrcodeScanner.render(onScanSuccess, onScanError);
-    }
+        function onLocationError(error) {
+            alert("Aktifkan lokasi untuk menggunakan fitur ini.");
+            console.log("Error mendapatkan lokasi: ", error.message);
+        }
 
-    $(document).ready(function() {
-        requestLocation();
-    });
-</script>
+        function startQrScanner(latitude, longitude) {
+            const qrCodeScanner = new Html5Qrcode("reader");
+
+            // Config untuk pemindaian kamera belakang otomatis
+            qrCodeScanner.start(
+                { facingMode: { exact: "environment" } }, // Menggunakan kamera belakang
+                {
+                    fps: 1, // Kecepatan frame per detik
+                    qrbox: { width: 250, height: 250 } // Ukuran area pemindaian QR
+                },
+                (qrMessage) => { // Callback jika QR code berhasil di-scan
+                    if (!qrScanned) {
+                        qrScanned = true;
+                        $.ajax({
+                            url: '/attendance',
+                            type: 'POST',
+                            data: {
+                                _token: '{{ csrf_token() }}',
+                                qr_code: qrMessage,
+                                latitude: latitude,
+                                longitude: longitude
+                            },
+                            success: function(response) {
+                                window.location.href = '/presensi';
+                            },
+                            error: function(response) {
+                                alert(response.responseJSON.message);
+                                qrScanned = false;
+                            }
+                        });
+                    }
+                },
+                (errorMessage) => { // Callback jika ada error dalam pemindaian
+                    console.log('QR Code Scan Error: ', errorMessage);
+                }
+            ).catch((error) => {
+                console.log("Error starting camera: ", error);
+                alert("Gagal memulai kamera. Pastikan izin kamera diaktifkan.");
+            });
+        }
+
+        $(document).ready(function() {
+            requestLocation();
+        });
+    </script>
+
 </body>
 </html>
