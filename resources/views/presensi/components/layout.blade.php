@@ -46,7 +46,7 @@
     </head>
     <body style="background-color: #2585DB">
         <div class="wrapper">
-            @include('components.PresensiView.components.navbar')
+            @include('components.PresensiView.navbar')
             
             <div class="content-presensi">
                 @yield('content')

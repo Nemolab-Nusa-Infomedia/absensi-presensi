@@ -9,7 +9,7 @@
     <div class="card">
         <div class="card-body">
             <div class="d-flex justify-content-center text-center gap-2">
-                <a href="#" class="btn btn-primary d-flex align-items-center justify-content-center text-center gap-1">
+                <a href="{{ route('presensi-scan') }}" class="btn btn-primary d-flex align-items-center justify-content-center text-center gap-1">
                     <i class='bx bx-arrow-to-right fs-4'></i>
                     <div class="row text-center">
                         <span>Masuk</span>
