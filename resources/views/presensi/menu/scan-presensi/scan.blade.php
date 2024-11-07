@@ -7,22 +7,70 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js" integrity="sha512-r6rDA7W6ZeQhvl8S7yRVQUKVHdexq+GAlNkNNqVC7YyIV+NwqCTJe2hDWCiffTyRNOeGEzRRJ9ifvRm/HCzGYg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            padding-top: 20px;
+            max-width: 400px;
+        }
+
+        .title {
+            font-weight: 700;
+            font-size: 20px;
+            color: #2D4A8A;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #8a8a8a;
+            text-align: center;
+            margin-top: 5px;
+            margin-bottom: 20px;
+        }
+
+        .qr-code-container {
+            border: 4px solid transparent;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .qr-frame {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border: 4px solid #2D4A8A;
+            border-radius: 12px;
+            pointer-events: none;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <div class="row col-12 col-md-6 justify-content-center mx-auto">
-            <h4 class="d-flex justify-content-center">Scan QR Code</h4>
-            <div class="card" id="reader">
-                <div class="card-content mx-auto">
-                </div>
+        <div class="row justify-content-center">
+            <a href="#" class="text-decoration-none d-flex align-items-center mb-3" style="color: #2D4A8A;">
+                <i class="bi bi-arrow-left fs-5 me-2"></i> Kembali
+            </a>
+            <h4 class="title">Scan QR Code</h4>
+            <p class="subtitle">Silakan Scan Barcode di sini</p>
+            <div class="qr-code-container" id="reader">
+                <div class="qr-frame"></div>
             </div>
         </div>
     </div>
 
 <script>
-    var qrScanned = false; // Variabel penanda untuk memastikan QR code hanya dipindai sekali
+    var qrScanned = false;
 
-    // Fungsi untuk meminta lokasi pengguna
     function requestLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(onLocationSuccess, onLocationError);
@@ -31,29 +79,21 @@
         }
     }
 
-    // Fungsi jika lokasi berhasil diambil
     function onLocationSuccess(position) {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
-
-        console.log("Lokasi Pengguna: ", latitude, longitude);
-        
-        // Lanjutkan proses pemindaian QR
         startQrScanner(latitude, longitude);
     }
 
-    // Fungsi jika lokasi gagal diambil
     function onLocationError(error) {
         alert("Aktifkan lokasi untuk menggunakan fitur ini.");
         console.log("Error mendapatkan lokasi: ", error.message);
     }
 
-    // Mulai QR Scanner jika lokasi tersedia
     function startQrScanner(latitude, longitude) {
         function onScanSuccess(qrMessage) {
-            if (!qrScanned) { // Pastikan QR code belum dipindai sebelumnya
-                console.log('Scanned QR Code: ', qrMessage);
-                qrScanned = true; // Set variabel penanda menjadi true setelah pemindaian pertama
+            if (!qrScanned) {
+                qrScanned = true;
                 $.ajax({
                     url: '/attendance',
                     type: 'POST',
@@ -64,8 +104,7 @@
                         longitude: longitude
                     },
                     success: function(response) {
-                        const newUrl = '/presensi';
-                        window.location.href = newUrl;
+                        window.location.href = '/presensi';
                     },
                     error: function(response) {
                         alert(response.responseJSON.message);
@@ -80,11 +119,10 @@
         }
 
         var html5QrcodeScanner = new Html5QrcodeScanner(
-            "reader", { fps: 10, qrbox: 250 });
+            "reader", { fps: 1, qrbox: 250 });
         html5QrcodeScanner.render(onScanSuccess, onScanError);
     }
 
-    // Jalankan permintaan lokasi saat halaman dimuat
     $(document).ready(function() {
         requestLocation();
     });
