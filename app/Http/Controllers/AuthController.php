@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -30,5 +32,21 @@ class AuthController extends Controller
         }else{
             return redirect()->route('login');
         }
+    }
+
+    public function reset(Request $request){
+        $request->validate([
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required|min:8|confirmed',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+        $user->update([
+            'password' => Hash::make($request->password),
+            'is_change' => 'change',
+        ]);
+
+        Auth::login($user);
+        return redirect()->route('presensi-home');
     }
 }

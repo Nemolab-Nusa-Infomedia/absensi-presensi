@@ -1,4 +1,4 @@
-@extends('components.PresensiView.components.layout')
+@extends('components.PresensiView.layout')
 
 @section('content')
 <div class="text-center mt-2" style="color: #003F77">
