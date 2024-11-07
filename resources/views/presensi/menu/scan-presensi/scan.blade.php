@@ -37,20 +37,37 @@
         .qr-code-container {
             border: 4px solid transparent;
             border-radius: 12px;
-            padding: 20px;
+            padding: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
         }
 
         .qr-frame {
             position: absolute;
-            top: 5px;
-            left: 5px;
-            right: 5px;
-            bottom: 5px;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
             border: 4px solid #2D4A8A;
             border-radius: 12px;
             pointer-events: none;
+        }
+
+        /* Responsif untuk ukuran layar kecil */
+        @media (max-width: 576px) {
+            .container {
+                max-width: 100%;
+                padding: 0 15px;
+            }
+
+            .qr-code-container {
+                width: 100%;
+                height: 300px; /* menyesuaikan ketinggian */
+            }
         }
     </style>
 </head>
@@ -70,7 +87,7 @@
 
     <script>
         var qrScanned = false;
-
+    
         function requestLocation() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(onLocationSuccess, onLocationError);
@@ -78,21 +95,21 @@
                 alert("Geolocation tidak didukung di browser Anda.");
             }
         }
-
+    
         function onLocationSuccess(position) {
             const latitude = position.coords.latitude;
             const longitude = position.coords.longitude;
             startQrScanner(latitude, longitude);
         }
-
+    
         function onLocationError(error) {
             alert("Aktifkan lokasi untuk menggunakan fitur ini.");
             console.log("Error mendapatkan lokasi: ", error.message);
         }
-
+    
         function startQrScanner(latitude, longitude) {
             const qrCodeScanner = new Html5Qrcode("reader");
-
+            
             // Config untuk pemindaian kamera belakang otomatis
             qrCodeScanner.start(
                 { facingMode: { exact: "environment" } }, // Menggunakan kamera belakang
@@ -130,11 +147,10 @@
                 alert("Gagal memulai kamera. Pastikan izin kamera diaktifkan.");
             });
         }
-
+    
         $(document).ready(function() {
             requestLocation();
         });
-    </script>
-
+    </script>    
 </body>
 </html>
