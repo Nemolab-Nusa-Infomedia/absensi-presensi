@@ -87,7 +87,7 @@
 
     <script>
         var qrScanned = false;
-    
+
         function requestLocation() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(onLocationSuccess, onLocationError);
@@ -95,21 +95,21 @@
                 alert("Geolocation tidak didukung di browser Anda.");
             }
         }
-    
+
         function onLocationSuccess(position) {
             const latitude = position.coords.latitude;
             const longitude = position.coords.longitude;
             startQrScanner(latitude, longitude);
         }
-    
+
         function onLocationError(error) {
             alert("Aktifkan lokasi untuk menggunakan fitur ini.");
             console.log("Error mendapatkan lokasi: ", error.message);
         }
-    
+
         function startQrScanner(latitude, longitude) {
             const qrCodeScanner = new Html5Qrcode("reader");
-            
+
             // Config untuk pemindaian kamera belakang otomatis
             qrCodeScanner.start(
                 { facingMode: { exact: "environment" } }, // Menggunakan kamera belakang
@@ -147,10 +147,10 @@
                 alert("Gagal memulai kamera. Pastikan izin kamera diaktifkan.");
             });
         }
-    
+
         $(document).ready(function() {
             requestLocation();
         });
-    </script>    
+    </script>
 </body>
 </html>

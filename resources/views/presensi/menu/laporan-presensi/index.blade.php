@@ -40,12 +40,12 @@
                     Aktifitas
                 </h5>
                 <div class="ms-auto">
-                    <a href="javascript:void(0);" class="text-primary">Export
-                        <i class="bx bx-export ms-1"></i>
+                    <a href="#" class="text-primary">
+                        <i class='bx bx-calendar'></i>
                     </a>
                 </div>
             </div>
-            <div class="card-body">
+            <div class="card-body scrollable-content">
                 @foreach($attendances as $key)
                 <div class="d-flex align-items-start">
                     <p class="mb-0 mt-2 pe-3 me-2">
@@ -78,7 +78,6 @@
                         </div>
                     </div>
                 </div>
-
                 @endforeach
             </div>
             <!-- end card body -->
