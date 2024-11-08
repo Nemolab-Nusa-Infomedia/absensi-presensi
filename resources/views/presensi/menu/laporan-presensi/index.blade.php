@@ -45,7 +45,7 @@
                     </a>
                 </div>
             </div>
-            <div class="card-body">
+            <div class="card-body scrollable-content">
                 @foreach($attendances as $key)
                 <div class="d-flex align-items-start">
                     <p class="mb-0 mt-2 pe-3 me-2">
@@ -78,7 +78,6 @@
                         </div>
                     </div>
                 </div>
-
                 @endforeach
             </div>
             <!-- end card body -->

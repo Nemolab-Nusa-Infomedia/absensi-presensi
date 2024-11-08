@@ -12,22 +12,22 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{ secure_asset('assets/images/logo/logo-hs.png') }}" />
+        <link rel="shortcut icon" href="{{ url('assets/images/logo/logo-hs.png') }}" />
 
         <!-- Vendor css (Require in all Page) -->
-        <link href="{{ secure_asset('assets/css/vendor.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ url('assets/css/vendor.min.css') }}" rel="stylesheet" type="text/css" />
 
         <!-- Icons css (Require in all Page) -->
-        <link href="{{ secure_asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ url('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
 
         <!-- App css (Require in all Page) -->
-        <link href="{{ secure_asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ url('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
 
         <!-- Theme Config js (Require in all Page) -->
-        <script src="{{ secure_asset('assets/js/config.js') }}"></script>
+        <script src="{{ url('assets/js/config.js') }}"></script>
 
         {{-- css --}}
-        <link rel="stylesheet" href="{{ secure_asset('assets/css/apk-presensi/main.css') }}">
+        <link rel="stylesheet" href="{{ url('assets/css/apk-presensi/main.css') }}">
 
         {{-- locatioon --}}
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
@@ -63,9 +63,9 @@
          <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
 
         <!-- Vendor Javascript (Require in all Page) -->
-        <script src="{{ secure_asset('assets/js/vendor.js') }}"></script>
+        <script src="{{ url('assets/js/vendor.js') }}"></script>
 
         <!-- App Javascript (Require in all Page) -->
-        <script src="{{ secure_asset('assets/js/app.js') }}"></script>
+        <script src="{{ url('assets/js/app.js') }}"></script>
     </body>
 </html>
