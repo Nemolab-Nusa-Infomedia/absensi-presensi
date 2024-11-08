@@ -64,6 +64,14 @@
                 </li>
                 <li class="list-group-item border-0 border-bottom px-0">
                     <div class="d-flex flex-wrap align-items-center">
+                        <h5 class="me-2 fw-medium mb-0">
+                            Jenis Kelamin :
+                        </h5>
+                        <span class="fs-14 text-muted">{{ Auth::user()->gender }}</span>
+                    </div>
+                </li>
+                <li class="list-group-item border-0 border-bottom px-0">
+                    <div class="d-flex flex-wrap align-items-center">
                         <h5 class="me-2 mb-0 fw-medium">
                             Divisi :
                         </h5>
