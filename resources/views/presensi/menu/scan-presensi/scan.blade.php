@@ -35,15 +35,16 @@
         }
 
         .qr-code-container {
-            border: 4px solid transparent;
-            border-radius: 12px;
-            padding: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            height: auto;
+            max-width: 500px;
+            margin: 0 auto;
             position: relative;
+            border-radius: 12px;
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: white;
         }
 
         .qr-frame {
@@ -57,16 +58,14 @@
             pointer-events: none;
         }
 
-        /* Responsif untuk ukuran layar kecil */
+        /* Responsif untuk layar kecil */
         @media (max-width: 576px) {
             .container {
                 max-width: 100%;
                 padding: 0 15px;
             }
-
             .qr-code-container {
-                width: 100%;
-                height: 500px; /* menyesuaikan ketinggian */
+                max-width: 100%;
             }
         }
     </style>
@@ -74,7 +73,7 @@
 <body>
     <div class="container">
         <div class="row justify-content-center">
-            <a href="{{ route('presensi-home') }}" class="text-decoration-none d-flex align-items-center mb-3 py-3" style="color: #2D4A8A;">
+            <a href="#" class="text-decoration-none d-flex align-items-center mb-3" style="color: #2D4A8A;">
                 <i class="bi bi-arrow-left fs-5 me-2"></i> Kembali
             </a>
             <h4 class="title">Scan QR Code</h4>
@@ -85,72 +84,64 @@
         </div>
     </div>
 
-    <script>
-        var qrScanned = false;
-    
-        function requestLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(onLocationSuccess, onLocationError);
-            } else {
-                alert("Geolocation tidak didukung di browser Anda.");
+<script>
+    var qrScanned = false;
+
+    function requestLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(onLocationSuccess, onLocationError);
+        } else {
+            alert("Geolocation tidak didukung di browser Anda.");
+        }
+    }
+
+    function onLocationSuccess(position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        startQrScanner(latitude, longitude);
+    }
+
+    function onLocationError(error) {
+        alert("Aktifkan lokasi untuk menggunakan fitur ini.");
+        console.log("Error mendapatkan lokasi: ", error.message);
+    }
+
+    function startQrScanner(latitude, longitude) {
+        function onScanSuccess(qrMessage) {
+            if (!qrScanned) {
+                qrScanned = true;
+                $.ajax({
+                    url: '/attendance',
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        qr_code: qrMessage,
+                        latitude: latitude,
+                        longitude: longitude
+                    },
+                    success: function(response) {
+                        window.location.href = '/presensi';
+                    },
+                    error: function(response) {
+                        alert(response.responseJSON.message);
+                        qrScanned = false;
+                    }
+                });
             }
         }
-    
-        function onLocationSuccess(position) {
-            const latitude = position.coords.latitude;
-            const longitude = position.coords.longitude;
-            startQrScanner(latitude, longitude);
+
+        function onScanError(errorMessage) {
+            console.log('QR Code Scan Error: ', errorMessage);
         }
-    
-        function onLocationError(error) {
-            alert("Aktifkan lokasi untuk menggunakan fitur ini.");
-            console.log("Error mendapatkan lokasi: ", error.message);
-        }
-    
-        function startQrScanner(latitude, longitude) {
-            const qrCodeScanner = new Html5Qrcode("reader");
-            
-            // Config untuk pemindaian kamera belakang otomatis
-            qrCodeScanner.start(
-                { facingMode: { exact: "environment" } }, // Menggunakan kamera belakang
-                {
-                    fps: 1, // Kecepatan frame per detik
-                    qrbox: { width: 250, height: 250 } // Ukuran area pemindaian QR
-                },
-                (qrMessage) => { // Callback jika QR code berhasil di-scan
-                    if (!qrScanned) {
-                        qrScanned = true;
-                        $.ajax({
-                            url: '/attendance',
-                            type: 'POST',
-                            data: {
-                                _token: '{{ csrf_token() }}',
-                                qr_code: qrMessage,
-                                latitude: latitude,
-                                longitude: longitude
-                            },
-                            success: function(response) {
-                                window.location.href = '/presensi';
-                            },
-                            error: function(response) {
-                                alert(response.responseJSON.message);
-                                qrScanned = false;
-                            }
-                        });
-                    }
-                },
-                (errorMessage) => { // Callback jika ada error dalam pemindaian
-                    console.log('QR Code Scan Error: ', errorMessage);
-                }
-            ).catch((error) => {
-                console.log("Error starting camera: ", error);
-                alert("Gagal memulai kamera. Pastikan izin kamera diaktifkan.");
-            });
-        }
-    
-        $(document).ready(function() {
-            requestLocation();
-        });
-    </script>    
+
+        var html5QrcodeScanner = new Html5QrcodeScanner(
+            "reader", { fps: 10, qrbox: { width: 250, height: 250 } });
+        html5QrcodeScanner.render(onScanSuccess, onScanError);
+    }
+
+    $(document).ready(function() {
+        requestLocation();
+    });
+</script>
 </body>
 </html>
