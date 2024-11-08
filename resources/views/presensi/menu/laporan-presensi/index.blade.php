@@ -40,8 +40,8 @@
                     Aktifitas
                 </h5>
                 <div class="ms-auto">
-                    <a href="javascript:void(0);" class="text-primary">Export
-                        <i class="bx bx-export ms-1"></i>
+                    <a href="#" class="text-primary">
+                        <i class='bx bx-calendar'></i>
                     </a>
                 </div>
             </div>

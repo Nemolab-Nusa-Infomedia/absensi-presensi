@@ -26,6 +26,15 @@ button.btn-primary {
     overflow-y: auto;
 }
 
+.job-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100px; /* Sesuaikan lebar ini sesuai kebutuhan */
+    display: inline-block;
+}
+
+
 @media (max-width: 768px) {
     .profile h5, .profile p {
         font-size: 0.9rem;
