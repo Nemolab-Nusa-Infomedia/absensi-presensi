@@ -27,7 +27,7 @@ class SendInformationLogin extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('superadmin@presensi.id', 'Admin Presensi Hugo'),
+            from: new Address('admin@presensi.hugostudio.id', 'Admin Presensi Hugo'),
             to: [$this->user['email']],
             subject: 'Informasi Login Presensi',
         );
