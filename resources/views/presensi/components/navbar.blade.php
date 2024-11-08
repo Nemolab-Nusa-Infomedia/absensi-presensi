@@ -14,7 +14,7 @@
                     <h5 class="mb-1 text-start text-white">
                         {{ Auth::user()->name }}
                     </h5>
-                    <h6 class="mb-0 text-start text-white">
+                    <h6 class="mb-0 text-start text-white job-title">
                         {{ Auth::user()->divisis->name }}
                     </h6>
                 </div>
