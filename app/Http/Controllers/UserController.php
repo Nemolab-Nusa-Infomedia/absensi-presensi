@@ -41,6 +41,12 @@ class UserController extends Controller
         return back()->with('success', 'User berhasil  ditambahkan');
     }
 
+    public function update(UserRequest $request, $id){
+        $data = User::find($id);
+        if($data->profile_image)
+        return response()->json(['success' => 'User berhasil diperbarui']);
+    }
+
     public function getUser(Request $request){
         if($request->ajax()){
             $data = User::with('divisis')->get();
