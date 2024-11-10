@@ -21,6 +21,8 @@ return new class extends Migration
             $table->enum('gender', ['male', 'female'])->nullable();
             $table->string('role_user')->nullable();
             $table->integer('otp')->nullable();
+            $table->bigInteger('phone')->nullable();
+            $table->text('profile_image')->nullable();
             $table->text('address')->nullable();
             $table->unsignedBigInteger('divisi_id')->nullable();
             $table->foreign('divisi_id')->references('id')->on('divisis');

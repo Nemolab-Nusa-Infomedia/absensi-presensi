@@ -88,6 +88,9 @@ class AttendanceController extends Controller
                 ->addColumn('check_in', function($row){
                     return Carbon::parse($row->check_in)->format('H:i:s');
                 })
+                ->addColumn('check_out', function($row){
+                    return Carbon::parse($row->check_out)->format('H:i:s');
+                })
                 ->rawColumns(['action'])
                 ->make(true);
         }

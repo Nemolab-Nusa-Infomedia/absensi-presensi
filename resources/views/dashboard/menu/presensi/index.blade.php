@@ -36,9 +36,6 @@
                         <!-- Input search yang akan dihubungkan dengan DataTable -->
                         <input type="search" class="form-control" id="search" placeholder="Cari"/>
                     </div>
-                    <div>
-                        <button type="button" class="btn btn-primary" data-bs-target="#create-employee" data-bs-toggle="modal">+ Tambah</button>
-                    </div>
                 </div>
             </div>
             <div>
@@ -49,6 +46,8 @@
                                 <th class="border-0 py-2">No</th>
                                 <th class="border-0 py-2">Nama</th>
                                 <th class="border-0 py-2">Masuk</th>
+                                <th class="border-0 py-2">Pulang</th>
+                                <th class="border-0 py-2">Catatan</th>
                             </tr>
                         </thead>
                     </table>
@@ -100,6 +99,8 @@
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                 {data: 'users', name: 'users'},
                 {data: 'check_in', name: 'check_in'},
+                {data: 'check_out', name: 'check_out'},
+                {data: 'notes', name: 'notes'},
             ],
             drawCallback: function(settings) {
                 var pageInfo = table.page.info();

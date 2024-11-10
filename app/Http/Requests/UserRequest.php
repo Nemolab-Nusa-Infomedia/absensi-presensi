@@ -26,6 +26,7 @@ class UserRequest extends FormRequest
             'email' => 'required|string|email|unique:users',
             'email_verified_at' => 'nullable|date',
             'password' => 'nullable|string|min:8',
+            'phone' => 'nullable|numeric',
             'is_changed' => 'nullable|boolean',
             'gender' => 'nullable|in:male,female',
             'divisi_id' => 'nullable|exists:divisis,id',
@@ -43,6 +44,7 @@ class UserRequest extends FormRequest
             'email.email' => 'Email tidak valid',
             'password.required' => 'Kata sandi harus diisi',
             'password.min' => 'Kata sandi minimal 8 karakter',
+            'phone.numeric' => 'Nomor telepon harus berupa angka',
             'gender.in' => 'Jenis kelamin tidak valid',
             'divisi_id.exists' => 'Divisi tidak ada',
         ];
