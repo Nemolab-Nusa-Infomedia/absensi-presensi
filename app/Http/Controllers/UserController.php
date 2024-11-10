@@ -8,8 +8,11 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Mail\SendInformationLogin;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\UpdateUserRequest;
 use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
@@ -18,6 +21,14 @@ class UserController extends Controller
         $divisi = Divisi::all();
         return view('dashboard.menu.sdm.user',compact('divisi'), [
             'title' => 'User - Hugostudio Presensi'
+        ]);
+    }
+
+    public function detail($id){
+        $divisi = Divisi::all();
+        $user = User::find($id);
+        return view('dashboard.menu.sdm.detail_user', compact('user','divisi'), [
+            'title' => 'User - Hugostudio Presensi' 
         ]);
     }
 
@@ -41,10 +52,27 @@ class UserController extends Controller
         return back()->with('success', 'User berhasil  ditambahkan');
     }
 
-    public function update(UserRequest $request, $id){
-        $data = User::find($id);
-        if($data->profile_image)
-        return response()->json(['success' => 'User berhasil diperbarui']);
+    public function update(UpdateUserRequest $request, $id){
+        $user = User::find($id);
+        $data = $request->validated();
+
+        if($request->hasFile('profile_image')){
+            if($user->profile_image){
+                Storage::delete($user->profile_image);
+            }
+
+
+            $file = $request->file('profile_image');
+            $name = Str::before(Auth::user()->name, ' ').'-'. time() . '.' . $file->getClientOriginalExtension();
+            $path = $request->file('profile_image')->storeAs(
+                'avatars', $name
+            );
+            
+            $data['profile_image'] = $path;
+            $user->update($data);
+        }
+        $user->update($data);
+        return redirect()->back()->with('success', 'User berhasil  diperbaharui');
     }
 
     public function getUser(Request $request){
@@ -59,9 +87,8 @@ class UserController extends Controller
                     return $row->gender == 'male' ? 'Laki-laki' : 'Perempuan';
                 })
                 ->addColumn('action', function($row){
-                    $edit  = "<button type='button' data-id='".$row->id."' class='btn btn-warning rounded-pill btn-sm btn-edit' data-bs-target='#edit-divisi' data-bs-toggle='modal'><i class='bx bx-edit'></i></button>";
-                    $delete = "<button type='button' data-id='".$row->id."' class='btn btn-danger rounded-pill btn-sm btn-delete' data-bs-target='#delete-divisi' data-bs-toggle='modal'><i class='bx bx-trash'></i></button>";
-                    return $edit.$delete;
+                    $detail  = "<a href='".route('user-detail', ['id' => $row->id])."'><i class='bx bx-edit'></i></a>";
+                    return $detail;
                 })
                 ->rawColumns(['action'])
                 ->make(true);

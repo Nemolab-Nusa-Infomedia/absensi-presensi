@@ -18,7 +18,7 @@ Route::post('check', [AuthController::class, 'check'])->name('check');
 Route::middleware(['auth'])->group(function () {
     Route::get('/reset-password', [AuthController::class, 'reset_password'])->name('reset-password');
     Route::post('/reset', [AuthController::class, 'reset'])->name('reset');
-    
+
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::middleware(['auth', 'role:superadmin'])->group(function () {
@@ -29,6 +29,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/user', [UserController::class, 'index'])->name('user-index');
             Route::post('/user-store', [UserController::class, 'store'])->name('user-store');
             Route::get('/user-list', [UserController::class, 'getUser'])->name('user-list');
+            Route::get('/user-detail/{id}', [UserController::class, 'detail'])->name('user-detail');
             // DIVISI
             Route::get('/divisi', [DivisionController::class, 'index'])->name('divisi-index');
             Route::post('/divisi/store', [DivisionController::class, 'store'])->name('divisi-store');
@@ -39,8 +40,9 @@ Route::middleware(['auth'])->group(function () {
 
             Route::get('/daftar-hadir', [AttendanceController::class,'index'])->name('daftar-hadir');
             Route::get('/daftar-hadir-list', [AttendanceController::class,'getAttendances'])->name('daftar-hadir-list');
-    });
+        });
 
+        Route::post('/user-update/{id}', [UserController::class, 'update'])->name('user-update');
 
 
     Route::post('/attendance', [AttendanceController::class, 'storeAttendanceIn'])->name('attendance.store.in');
