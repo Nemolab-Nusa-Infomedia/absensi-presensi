@@ -5,11 +5,20 @@
                 <i class="fas fa-home fa-lg mr-2"></i>
                 <img src="{{ asset('assets/images/logo/hugostudio.png') }}" width="70px" alt="">
             </div>
-            <i class='bx bxs-bell'></i>
+            <div class="ms-auto">
+                <div class="d-block">
+                    <h5 id="time" class="mb-1 text-end text-white">
+
+                    </h5>
+                    <h6 id="date" class="mb-0 text-end text-white">
+
+                    </h6>
+                </div>
+            </div>
         </div>
         <div class="profile mt-3 text-center">
             <div class="d-flex flex-wrap align-items-center gap-2">
-                <img src="{{ asset('assets/images/users/dummy-avatar.jpg') }}" alt="" class="rounded-circle avatar-md" />
+                <img src="{{ asset('storage/'.Auth::user()->profile_image) }}" alt="" class="rounded-circle avatar-md" />
                 <div class="d-block">
                     <h5 class="mb-1 text-start text-white">
                         {{ Auth::user()->name }}
@@ -19,14 +28,7 @@
                     </h6>
                 </div>
                 <div class="ms-auto">
-                    <div class="d-block">
-                        <h5 id="time" class="mb-1 text-end text-white">
-
-                        </h5>
-                        <h6 id="date" class="mb-0 text-end text-white">
-
-                        </h6>
-                    </div>
+                    <i class='bx bxs-bell'></i>
                 </div>
             </div>
         </div>

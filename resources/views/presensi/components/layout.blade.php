@@ -51,7 +51,7 @@
         <!-- Greeting -->
         <section  class="bg-white content-presensi">
             <section class="text-center py-3">
-                <h3>Hallo 👋 {{ Auth::user()->name }}</h3>
+                <h3>Hallo 👋 {{ explode(' ', Auth::user()->name)[0] }}</h3>
                 <p>Semangat kerja ya!</p>
             </section>
 

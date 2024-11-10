@@ -58,7 +58,7 @@
                             <div class="d-flex flex-wrap align-items-center gap-2">
                                 <div class="d-block">
                                     <h5 class="mb-1 text-start text-dark">
-                                        Presensi Kehadiran
+                                        Presensi Hadir
                                     </h5>
                                     <h5 class="mb-1 text-start text-dark">
                                         Presensi Pulang
