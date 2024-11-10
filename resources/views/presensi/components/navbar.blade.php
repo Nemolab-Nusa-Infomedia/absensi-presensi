@@ -18,7 +18,7 @@
         </div>
         <div class="profile mt-3 text-center">
             <div class="d-flex flex-wrap align-items-center gap-2">
-                <img src="{{ asset('assets/images/users/dummy-avatar.jpg') }}" alt="" class="rounded-circle avatar-md" />
+                <img src="{{ asset('storage/'.Auth::user()->profile_image) }}" alt="" class="rounded-circle avatar-md" />
                 <div class="d-block">
                     <h5 class="mb-1 text-start text-white">
                         {{ Auth::user()->name }}
