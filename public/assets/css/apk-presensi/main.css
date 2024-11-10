@@ -26,13 +26,14 @@ button.btn-primary {
     overflow-y: auto;
 }
 
-.job-title {
+/* .job-title {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 100px; /* Sesuaikan lebar ini sesuai kebutuhan */
+    max-width: 100px;
     display: inline-block;
-}
+    text-align: start;
+} */
 
 
 @media (max-width: 768px) {
