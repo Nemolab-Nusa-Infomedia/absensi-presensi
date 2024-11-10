@@ -25,12 +25,14 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
         'is_changed',
         'gender',
         'role_user',
         'otp',
         'address',
         'divisi_id',
+        'profile_image'
     ];
 
     /**
