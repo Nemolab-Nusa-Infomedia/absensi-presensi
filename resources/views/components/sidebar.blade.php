@@ -37,6 +37,9 @@
                         <li class="sub-nav-item">
                             <a class="sub-nav-link" href="" >Jadwal</a>
                         </li>
+                        <li class="sub-nav-item">
+                            <a class="sub-nav-link" href="" >Informasi</a>
+                        </li>
                     </ul>
                 </div>
             </li>
@@ -59,7 +62,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-danger" href="">
+                <a class="nav-link text-danger" href="{{ route('logout') }}">
                     <span class="nav-icon">
                         <i class="bx bx-log-out fs-18 align-middle me-1"></i>
                     </span>

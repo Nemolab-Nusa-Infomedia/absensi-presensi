@@ -9,7 +9,7 @@
 <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px;">
     <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 0; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
         <tr>
-            <td align="center" style="background-color: #4CAF50; color: #ffffff; padding: 10px 0; border-radius: 8px 8px 0 0;">
+            <td align="center" style="background-color: #007bff; color: #ffffff; padding: 10px 0; border-radius: 8px 8px 0 0;">
                 <h1 style="margin: 0; font-size: 24px;">Detail Informasi Login</h1>
             </td>
         </tr>
