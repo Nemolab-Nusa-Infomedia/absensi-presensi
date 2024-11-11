@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\AkunController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AkunController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\PresensiController;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\LaporanPresensiController;
@@ -23,7 +24,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['auth', 'role:superadmin'])->group(function () {
         // Dashboard
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard-home');  
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard-home');
         // SDM
             // USER
             Route::get('/user', [UserController::class, 'index'])->name('user-index');
@@ -40,6 +41,8 @@ Route::middleware(['auth'])->group(function () {
 
             Route::get('/daftar-hadir', [AttendanceController::class,'index'])->name('daftar-hadir');
             Route::get('/daftar-hadir-list', [AttendanceController::class,'getAttendances'])->name('daftar-hadir-list');
+
+            Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule-index');
         });
 
         Route::post('/user-update/{id}', [UserController::class, 'update'])->name('user-update');
