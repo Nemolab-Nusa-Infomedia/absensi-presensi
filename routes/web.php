@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\PresensiController;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AnnouncementController;
@@ -24,7 +25,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['auth', 'role:superadmin'])->group(function () {
         // Dashboard
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard-home');  
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard-home');
         // SDM
             // USER
             Route::get('/user', [UserController::class, 'index'])->name('user-index');
@@ -45,6 +46,8 @@ Route::middleware(['auth'])->group(function () {
 
             Route::get('/pengumuman-list', [AnnouncementController::class,'getAnnouncement'])->name('pengumuman-list');
             Route::post('/pengumuman-buat', [AnnouncementController::class,'store'])->name('pengumuman-store');
+
+            Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule-index');
         });
 
         Route::post('/user-update/{id}', [UserController::class, 'update'])->name('user-update');

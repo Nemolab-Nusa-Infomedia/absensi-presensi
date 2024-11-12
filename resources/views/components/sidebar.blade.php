@@ -35,7 +35,7 @@
                             <a class="sub-nav-link" href="{{ route('daftar-hadir') }}" >Absensi</a>
                         </li>
                         <li class="sub-nav-item">
-                            <a class="sub-nav-link" href="" >Jadwal</a>
+                            <a class="sub-nav-link" href="{{ route('schedule-index') }}" >Jadwal</a>
                         </li>
                         <li class="sub-nav-item">
                             <a class="sub-nav-link" href="{{ route('pengumuman-index') }}" >Pengumuman</a>
