@@ -58,160 +58,26 @@
         </div>
         <div class="row col-md-12 scrollable-announcements">
             <div class="col-md-3">
+
+                @forelse ( $pengumuman as $items )
                 <div class="announcement-card my-2 p-3 mb-2">
                     <div class="d-flex flex-wrap align-items-center gap-2">
-                        <img src="{{ asset('assets/images/apk-presensi/pengumuman/image1.png') }}" alt="" class="" style="width: 100px" />
+                        <img src="{{ asset('storage/'.$items->image_header) }}" alt="" class="" style="width: 100px" />
                         <div class="d-block">
                             <h5 class="mb-1 text-start text-dark">
-                                Work From Home
+                                {{ $items->title }}
                             </h5>
                             <h6 class="mb-0 text-start text-dark">
-                                Rabu, Kamis, Jumat di minggu ke-3 & ke-4 jadwalnya WFH
+                                {{ $items->body }}
                             </h6>
-                            <small class="text-muted">Hugo Studio - 26/09/2024</small>
+                            <small class="text-muted">{{ $items->writter }} - {{ $items->created_at->format('d/m/Y') }}</small>
                         </div>
                     </div>
                 </div>
-                <div class="announcement-card my-2 p-3 mb-2">
-                    <div class="d-flex flex-wrap align-items-center gap-2">
-                        <img src="{{ asset('assets/images/apk-presensi/pengumuman/image1.png') }}" alt="" class="" style="width: 100px" />
-                        <div class="d-block">
-                            <h5 class="mb-1 text-start text-dark">
-                                Work From Home
-                            </h5>
-                            <h6 class="mb-0 text-start text-dark">
-                                Rabu, Kamis, Jumat di minggu ke-3 & ke-4 jadwalnya WFH
-                            </h6>
-                            <small class="text-muted">Hugo Studio - 26/09/2024</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="announcement-card my-2 p-3 mb-2">
-                    <div class="d-flex flex-wrap align-items-center gap-2">
-                        <img src="{{ asset('assets/images/apk-presensi/pengumuman/image1.png') }}" alt="" class="" style="width: 100px" />
-                        <div class="d-block">
-                            <h5 class="mb-1 text-start text-dark">
-                                Work From Home
-                            </h5>
-                            <h6 class="mb-0 text-start text-dark">
-                                Rabu, Kamis, Jumat di minggu ke-3 & ke-4 jadwalnya WFH
-                            </h6>
-                            <small class="text-muted">Hugo Studio - 26/09/2024</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="announcement-card my-2 p-3 mb-2">
-                    <div class="d-flex flex-wrap align-items-center gap-2">
-                        <img src="{{ asset('assets/images/apk-presensi/pengumuman/image1.png') }}" alt="" class="" style="width: 100px" />
-                        <div class="d-block">
-                            <h5 class="mb-1 text-start text-dark">
-                                Work From Home
-                            </h5>
-                            <h6 class="mb-0 text-start text-dark">
-                                Rabu, Kamis, Jumat di minggu ke-3 & ke-4 jadwalnya WFH
-                            </h6>
-                            <small class="text-muted">Hugo Studio - 26/09/2024</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="announcement-card my-2 p-3 mb-2">
-                    <div class="d-flex flex-wrap align-items-center gap-2">
-                        <img src="{{ asset('assets/images/apk-presensi/pengumuman/image1.png') }}" alt="" class="" style="width: 100px" />
-                        <div class="d-block">
-                            <h5 class="mb-1 text-start text-dark">
-                                Work From Home
-                            </h5>
-                            <h6 class="mb-0 text-start text-dark">
-                                Rabu, Kamis, Jumat di minggu ke-3 & ke-4 jadwalnya WFH
-                            </h6>
-                            <small class="text-muted">Hugo Studio - 26/09/2024</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="announcement-card my-2 p-3 mb-2">
-                    <div class="d-flex flex-wrap align-items-center gap-2">
-                        <img src="{{ asset('assets/images/apk-presensi/pengumuman/image1.png') }}" alt="" class="" style="width: 100px" />
-                        <div class="d-block">
-                            <h5 class="mb-1 text-start text-dark">
-                                Work From Home
-                            </h5>
-                            <h6 class="mb-0 text-start text-dark">
-                                Rabu, Kamis, Jumat di minggu ke-3 & ke-4 jadwalnya WFH
-                            </h6>
-                            <small class="text-muted">Hugo Studio - 26/09/2024</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="announcement-card my-2 p-3 mb-2">
-                    <div class="d-flex flex-wrap align-items-center gap-2">
-                        <img src="{{ asset('assets/images/apk-presensi/pengumuman/image1.png') }}" alt="" class="" style="width: 100px" />
-                        <div class="d-block">
-                            <h5 class="mb-1 text-start text-dark">
-                                Work From Home
-                            </h5>
-                            <h6 class="mb-0 text-start text-dark">
-                                Rabu, Kamis, Jumat di minggu ke-3 & ke-4 jadwalnya WFH
-                            </h6>
-                            <small class="text-muted">Hugo Studio - 26/09/2024</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="announcement-card my-2 p-3 mb-2">
-                    <div class="d-flex flex-wrap align-items-center gap-2">
-                        <img src="{{ asset('assets/images/apk-presensi/pengumuman/image1.png') }}" alt="" class="" style="width: 100px" />
-                        <div class="d-block">
-                            <h5 class="mb-1 text-start text-dark">
-                                Work From Home
-                            </h5>
-                            <h6 class="mb-0 text-start text-dark">
-                                Rabu, Kamis, Jumat di minggu ke-3 & ke-4 jadwalnya WFH
-                            </h6>
-                            <small class="text-muted">Hugo Studio - 26/09/2024</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="announcement-card my-2 p-3 mb-2">
-                    <div class="d-flex flex-wrap align-items-center gap-2">
-                        <img src="{{ asset('assets/images/apk-presensi/pengumuman/image1.png') }}" alt="" class="" style="width: 100px" />
-                        <div class="d-block">
-                            <h5 class="mb-1 text-start text-dark">
-                                Work From Home
-                            </h5>
-                            <h6 class="mb-0 text-start text-dark">
-                                Rabu, Kamis, Jumat di minggu ke-3 & ke-4 jadwalnya WFH
-                            </h6>
-                            <small class="text-muted">Hugo Studio - 26/09/2024</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="announcement-card my-2 p-3 mb-2">
-                    <div class="d-flex flex-wrap align-items-center gap-2">
-                        <img src="{{ asset('assets/images/apk-presensi/pengumuman/image1.png') }}" alt="" class="" style="width: 100px" />
-                        <div class="d-block">
-                            <h5 class="mb-1 text-start text-dark">
-                                Work From Home
-                            </h5>
-                            <h6 class="mb-0 text-start text-dark">
-                                Rabu, Kamis, Jumat di minggu ke-3 & ke-4 jadwalnya WFH
-                            </h6>
-                            <small class="text-muted">Hugo Studio - 26/09/2024</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="announcement-card my-2 p-3 mb-2">
-                    <div class="d-flex flex-wrap align-items-center gap-2">
-                        <img src="{{ asset('assets/images/apk-presensi/pengumuman/image1.png') }}" alt="" class="" style="width: 100px" />
-                        <div class="d-block">
-                            <h5 class="mb-1 text-start text-dark">
-                                Work From Home
-                            </h5>
-                            <h6 class="mb-0 text-start text-dark">
-                                Rabu, Kamis, Jumat di minggu ke-3 & ke-4 jadwalnya WFH
-                            </h6>
-                            <small class="text-muted">Hugo Studio - 26/09/2024</small>
-                        </div>
-                    </div>
-                </div>
+                @empty
+                    
+                @endforelse
+
             </div>
         </div>
     </section>

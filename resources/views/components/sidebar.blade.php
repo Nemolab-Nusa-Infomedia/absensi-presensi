@@ -19,6 +19,25 @@
 
     <div class="scrollbar" data-simplebar>
         <ul class="navbar-nav" id="navbar-nav">
+            <li class="menu-title">General</li>
+
+            <li class="nav-item">
+                <a class="nav-link menu-arrow" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
+                    <span class="nav-icon">
+                        <iconify-icon
+                            icon="iconamoon:home-duotone"
+                        ></iconify-icon>
+                    </span>
+                    <span class="nav-text"> Dashboard </span>
+                </a>
+                <div class="collapse" id="sidebarDashboards">
+                    <ul class="nav sub-navbar-nav">
+                        <li class="sub-nav-item">
+                            <a class="sub-nav-link" href="{{ route('dashboard-home') }}">Activity</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
 
             <li class="menu-title">menu</li>
 
@@ -35,7 +54,10 @@
                             <a class="sub-nav-link" href="{{ route('daftar-hadir') }}" >Absensi</a>
                         </li>
                         <li class="sub-nav-item">
-                            <a class="sub-nav-link" href="" >Jadwal</a>
+                            <a class="sub-nav-link" href="{{ route('schedule-index') }}" >Jadwal</a>
+                        </li>
+                        <li class="sub-nav-item">
+                            <a class="sub-nav-link" href="{{ route('pengumuman-index') }}" >Pengumuman</a>
                         </li>
                     </ul>
                 </div>
@@ -50,7 +72,7 @@
                 <div class="collapse" id="sdm">
                     <ul class="nav sub-navbar-nav">
                         <li class="sub-nav-item">
-                            <a class="sub-nav-link" href="{{ route('user-index') }}" >User</a>
+                            <a class="sub-nav-link" href="{{ route('user-index') }}" >Pegawai</a>
                         </li>
                         <li class="sub-nav-item">
                             <a class="sub-nav-link" href="{{ route('divisi-index') }}" >Divisi</a>
@@ -59,7 +81,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-danger" href="">
+                <a class="nav-link text-danger" href="apps-chat.php">
                     <span class="nav-icon">
                         <i class="bx bx-log-out fs-18 align-middle me-1"></i>
                     </span>
