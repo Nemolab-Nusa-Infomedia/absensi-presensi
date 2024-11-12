@@ -110,12 +110,12 @@
         function startQrScanner(latitude, longitude) {
             const qrCodeScanner = new Html5Qrcode("reader");
 
-            // Config untuk pemindaian kamera belakang otomatis
+            // Config untuk pemindaian kamera tanpa menentukan kamera belakang secara khusus
             qrCodeScanner.start(
-                { facingMode: { exact: "environment" } }, // Menggunakan kamera belakang
+                { facingMode: "environment" }, // Tidak menggunakan exact, lebih kompatibel dengan webview
                 {
-                    fps: 1, // Kecepatan frame per detik
-                    qrbox: { width: 250, height: 250 } // Ukuran area pemindaian QR
+                    fps: 1,
+                    qrbox: { width: 250, height: 250 }
                 },
                 (qrMessage) => { // Callback jika QR code berhasil di-scan
                     if (!qrScanned) {

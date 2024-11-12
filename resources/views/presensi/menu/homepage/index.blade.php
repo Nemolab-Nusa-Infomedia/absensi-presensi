@@ -75,9 +75,8 @@
                     </div>
                 </div>
                 @empty
-                    
+                    Belum ada pengumuman
                 @endforelse
-
             </div>
         </div>
     </section>
