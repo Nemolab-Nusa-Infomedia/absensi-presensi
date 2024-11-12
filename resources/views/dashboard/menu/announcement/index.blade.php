@@ -44,14 +44,15 @@
             </div>
             <div>
                 <div class="table-responsive table-centered">
-                    <table id="division-table" class="table text-nowrap mb-0">
+                    <table id="pengumuman-table" class="table text-nowrap mb-0">
                         <thead class="bg-light bg-opacity-50">
                             <tr>
                                 <th class="border-0 py-2">No</th>
                                 <th class="border-0 py-2">Image</th>
                                 <th class="border-0 py-2">Judul</th>
                                 <th class="border-0 py-2">Catatan</th>
-                                <th></th>
+                                <th class="border-0 py-2">Penulis</th>
+                                <th class="border-0 py-2"></th>
                             </tr>
                         </thead>
                     </table>
@@ -88,12 +89,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="" method="POST">
+                <form action="{{ route('pengumuman-store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="mb-3">
                             <label for="namaInformasi" class="form-label">Image Informasi</label>
-                            <input type="file" id="fileInput" name="informasiImage" class="form-control">
+                            <input type="file" id="fileInput" name="image_header" class="form-control">
                         </div>
                         <div class="mb-3">
                             <label for="namaInformasi" class="form-label">Judul Informasi</label>
@@ -103,6 +104,7 @@
                             <label for="catatanInformasi" class="form-label">Catatan Informasi</label>
                             <textarea name="body" id="alamatPegawai" class="form-control"></textarea>
                         </div>
+                        <input type="text" name="writter" value="{{ Auth::user()->name }}" hidden class="form-control">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -166,13 +168,13 @@
         var pageLength = 10; // Jumlah data per halaman
 
         // Inisialisasi DataTable dengan paging dinonaktifkan
-        var table = $('#division-table').DataTable({
+        var table = $('#pengumuman-table').DataTable({
             dom: '<"top">rt<"clear">', // Nonaktifkan paging default
             processing: true,
             serverSide: true,
             paging: false, // Disable default pagination
             ajax: {
-                url: "{{ route('divisi-list') }}",
+                url: "{{ route('pengumuman-list') }}",
                 data: function(d) {
                     d.start = (currentPage - 1) * pageLength; // Tentukan offset data berdasarkan halaman saat ini
                     d.length = pageLength; // Tentukan jumlah data per halaman
@@ -180,7 +182,10 @@
             },
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                {data: 'name', name: 'name'},
+                {data: 'image_header', name: 'image_header'},
+                {data: 'title', name: 'title'},
+                {data: 'body', name: 'body'},
+                {data: 'writter', name: 'writter'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             drawCallback: function(settings) {
@@ -236,7 +241,7 @@
             // Reload DataTable with new page number
             table.ajax.reload();
         });
-        $('#division-table').on('click', '.btn-edit', function () {
+        $('#pengumuman-table').on('click', '.btn-edit', function () {
             var id = $(this).data('id');
             // Ambil data dari server untuk mengisi form
             $.ajax({
@@ -289,7 +294,7 @@
                     },
                     success: function(response) {
                         $('#delete-divisi').modal('hide');  // Tutup modal setelah berhasil hapus
-                        $('#division-table').DataTable().ajax.reload();  // Reload DataTables
+                        $('#pengumuman-table').DataTable().ajax.reload();  // Reload DataTables
 
                         // Tampilkan pesan sukses
                        $('#alertt').removeClass('d-none');

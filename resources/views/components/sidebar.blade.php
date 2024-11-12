@@ -38,7 +38,7 @@
                             <a class="sub-nav-link" href="" >Jadwal</a>
                         </li>
                         <li class="sub-nav-item">
-                            <a class="sub-nav-link" href="" >Informasi</a>
+                            <a class="sub-nav-link" href="{{ route('pengumuman-index') }}" >Pengumuman</a>
                         </li>
                     </ul>
                 </div>
