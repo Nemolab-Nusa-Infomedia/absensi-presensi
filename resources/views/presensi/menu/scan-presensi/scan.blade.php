@@ -18,58 +18,30 @@
             </div>
         </div>
     </div>
-
-<script>
-    var qrScanned = false; // Variabel penanda untuk memastikan QR code hanya dipindai sekali
-
-    // Fungsi untuk meminta lokasi pengguna
-    function requestLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(onLocationSuccess, onLocationError);
-        } else {
-            alert("Geolocation tidak didukung di browser Anda.");
-        }
-    }
-
-    // Fungsi jika lokasi berhasil diambil
-    function onLocationSuccess(position) {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
-
-        console.log("Lokasi Pengguna: ", latitude, longitude);
-
-        // Lanjutkan proses pemindaian QR
-        startQrScanner(latitude, longitude);
-    }
-
-    // Fungsi jika lokasi gagal diambil
-    function onLocationError(error) {
-        alert("Aktifkan lokasi untuk menggunakan fitur ini.");
-        console.log("Error mendapatkan lokasi: ", error.message);
-    }
-
-    // Mulai QR Scanner jika lokasi tersedia
-    function startQrScanner(latitude, longitude) {
+    <script>
+        var qrScanned = false; // Variabel penanda untuk memastikan QR code hanya dipindai sekali
         function onScanSuccess(qrMessage) {
             if (!qrScanned) { // Pastikan QR code belum dipindai sebelumnya
                 console.log('Scanned QR Code: ', qrMessage);
                 qrScanned = true; // Set variabel penanda menjadi true setelah pemindaian pertama
                 $.ajax({
-                    url: '/attendance',
+                    url: '/verify-qr',
                     type: 'POST',
                     data: {
                         _token: '{{ csrf_token() }}',
-                        qr_code: qrMessage,
-                        latitude: latitude,
-                        longitude: longitude
+                        qr_code: qrMessage
                     },
                     success: function(response) {
-                        const newUrl = '/presensi';
+                        const newUrl = '/hasil-scan/' + response.user.id;
                         window.location.href = newUrl;
                     },
                     error: function(response) {
-                        alert(response.responseJSON.message);
-                        qrScanned = false;
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: response.responseJSON.message
+                        });
+                        qrScanned = false; // Set variabel penanda kembali ke false jika terjadi kesalahan
                     }
                 });
             }
@@ -82,12 +54,7 @@
         var html5QrcodeScanner = new Html5QrcodeScanner(
             "reader", { fps: 1, qrbox: 250 });
         html5QrcodeScanner.render(onScanSuccess, onScanError);
-    }
 
-    // Jalankan permintaan lokasi saat halaman dimuat
-    $(document).ready(function() {
-        requestLocation();
-    });
-</script>
+    </script>
 </body>
 </html>
