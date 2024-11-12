@@ -57,7 +57,7 @@
                             <a class="sub-nav-link" href="{{ route('schedule-index') }}" >Jadwal</a>
                         </li>
                         <li class="sub-nav-item">
-                            <a class="sub-nav-link" href="{{ route('daftar-hadir') }}" >Pengumuman</a>
+                            <a class="sub-nav-link" href="{{ route('pengumuman-index') }}" >Pengumuman</a>
                         </li>
                     </ul>
                 </div>

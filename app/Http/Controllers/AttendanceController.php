@@ -91,6 +91,11 @@ class AttendanceController extends Controller
                 ->addColumn('check_out', function($row){
                     return Carbon::parse($row->check_out)->format('H:i:s');
                 })
+                ->addColumn('created_at', function($row){
+                    $hari = Carbon::parse($row->check_in)->locale('id')->dayName;
+                    $tanggal = Carbon::parse($row->check_in)->locale('id')->isoFormat('DD MMMM YYYY');
+                    return $hari . ', ' . $tanggal;
+                })
                 ->rawColumns(['action'])
                 ->make(true);
         }

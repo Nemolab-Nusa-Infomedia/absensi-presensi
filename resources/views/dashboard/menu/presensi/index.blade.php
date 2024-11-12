@@ -45,6 +45,7 @@
                             <tr>
                                 <th class="border-0 py-2">No</th>
                                 <th class="border-0 py-2">Nama</th>
+                                <th class="border-0 py-2">Tanggal Hari</th>
                                 <th class="border-0 py-2">Masuk</th>
                                 <th class="border-0 py-2">Pulang</th>
                                 <th class="border-0 py-2">Catatan</th>
@@ -98,6 +99,7 @@
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                 {data: 'users', name: 'users'},
+                {data: 'created_at', name: 'created_at'},
                 {data: 'check_in', name: 'check_in'},
                 {data: 'check_out', name: 'check_out'},
                 {data: 'notes', name: 'notes'},
