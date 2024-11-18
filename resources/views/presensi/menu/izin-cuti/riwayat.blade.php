@@ -35,7 +35,7 @@
 <div class="col-12">
     <div class="card">
         <div class="card-header d-flex">
-            <h5 class="card-title">Riwayat Pengajuan Surat</h5>
+            <h5 class="card-title">Riwayat Pengajuan</h5>
             <div class="ms-auto">
                 <a href="javascript:void(0);" class="text-primary">Bersihkan Riwayat
                 </a>
