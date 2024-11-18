@@ -45,32 +45,32 @@
             </div>
         </div>
         <div class="card-body">
-            <form action="">
+            <form action="{{ route('izin-cuti-store') }}" method="POST">
+                @csrf
                 <div class="col-md-12 mb-3">
                     <select class="form-control" data-choices name="choices-single-default" id="choices-single-default">
                         <option value="">Izin/Cuti</option>
-                        <option value="Izin">Izin</option>
-                        <option value="Cuti">Cuti</option>
+                        <option value="izin">Izin</option>
+                        <option value="cuti">Cuti</option>
                    </select>
                 </div>
                 <div class="row">
                     <div class="mb-3">
                         <label for="example-textarea" class="form-label">Keterangan</label>
-                        <textarea class="form-control" id="example-textarea" rows="5"></textarea>
+                        <textarea class="form-control" name="keterangan" id="example-textarea" rows="5"></textarea>
                    </div>
                    <div class="col-6 col-md-6">
                        <div class="mb-3">
                            <label for="example-textarea" class="form-label">Dari</label>
-                           <input type="date" id="basic-datepicker" class="form-control" placeholder="Basic datepicker">
+                           <input type="date" name="tanggal_mulai" id="basic-datepicker" class="form-control" placeholder="Basic datepicker">
                         </div>
                     </div>
                    <div class="col-6 col-md-6">
                        <div class="mb-3">
                            <label for="example-textarea" class="form-label">Sampai</label>
-                           <input type="date" id="basic-datepicker" class="form-control" placeholder="Basic datepicker">
+                           <input type="date" name="tanggal_selesai" id="basic-datepicker" class="form-control" placeholder="Basic datepicker">
                         </div>
                     </div>
-
                     <button type="submit" class="btn btn-primary">Kirim</button>
                 </div>
             </form>

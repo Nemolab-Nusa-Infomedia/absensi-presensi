@@ -69,4 +69,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/pengumuman', [AnnouncementController::class, 'index'])->name('pengumuman-index');
 
     Route::get('/izin-cuti', [IzinCutiController::class, 'index'])->name('izin-cuti');
+    Route::post('/izin-cuti-store', [IzinCutiController::class, 'store'])->name('izin-cuti-store');
 });
