@@ -11,7 +11,7 @@ class IzinRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -27,6 +27,20 @@ class IzinRequest extends FormRequest
             'keterangan' => 'required',
             'tanggal_mulai' => 'required|date',
             'tanggal_akhir' => 'nullable|date',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'user_id.required' => 'User ID harus diisi.',
+            'user_id.exists' => 'User ID tidak ditemukan.',
+            'jenis_izin.required' => 'Jenis izin harus diisi.',
+            'jenis_izin.in' => 'Jenis izin harus "izin" atau "cuti".',
+            'keterangan.required' => 'Keterangan harus diisi.',
+            'tanggal_mulai.required' => 'Tanggal mulai harus diisi.',
+            'tanggal_mulai.date' => 'Tanggal mulai harus berformat tanggal.',
+            'tanggal_akhir.date' => 'Tanggal akhir harus berformat tanggal.',
         ];
     }
 }

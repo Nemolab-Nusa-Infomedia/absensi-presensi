@@ -20,6 +20,12 @@ class IzinCutiController extends Controller
         $data['user_id'] = Auth::user()->id;
         $izin = Izin::create($data);    
         
-        return redirect()->route('izin-cuti-index');
+        return redirect()->route('izin-cuti');
+    }
+
+    public function riwayat(){
+        return view('presensi.menu.izin-cuti.riwayat', [
+            'title' => 'Riwayat Izin Cuti'
+        ]);
     }
 }

@@ -64,10 +64,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/presensi/scan/in', [PresensiController::class, 'scanIn'])->name('presensi-scan');
     Route::get('/laporan-presensi', [LaporanPresensiController::class, 'index'])->name('laporan-presensi');
     Route::get('/akun', [AkunController::class, 'index'])->name('akun');
-    
+
 
     Route::get('/pengumuman', [AnnouncementController::class, 'index'])->name('pengumuman-index');
 
     Route::get('/izin-cuti', [IzinCutiController::class, 'index'])->name('izin-cuti');
     Route::post('/izin-cuti-store', [IzinCutiController::class, 'store'])->name('izin-cuti-store');
+    Route::get('/riwayat-izin-cuti', [IzinCutiController::class, 'riwayat'])->name('riwayat-izin-cuti');
 });
