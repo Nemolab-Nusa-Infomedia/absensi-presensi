@@ -35,6 +35,11 @@ button.btn-primary {
     text-align: start;
 } */
 
+.hari {
+    width: 80px; /* Atur sesuai kebutuhan */
+    text-align: center; /* Agar teks di tengah */
+}
+
 
 @media (max-width: 768px) {
     .profile h5, .profile p {
