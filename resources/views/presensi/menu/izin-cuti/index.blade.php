@@ -39,7 +39,7 @@
                 Izin Cuti
             </h5>
             <div class="ms-auto">
-                <a href="#" class="text-primary">
+                <a href="{{ route('riwayat-izin-cuti') }}" class="text-primary">
                     Riwayat
                 </a>
             </div>

@@ -11,4 +11,10 @@ class IzinCutiController extends Controller
             'title' => 'Izin Cuti'
         ]);
     }
+
+    public function riwayat(){
+        return view('presensi.menu.izin-cuti.riwayat', [
+            'title' => 'Riwayat Izin Cuti'
+        ]);
+    }
 }
