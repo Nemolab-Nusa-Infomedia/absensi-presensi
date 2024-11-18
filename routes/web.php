@@ -10,6 +10,7 @@ use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\IzinCutiController;
 use App\Http\Controllers\LaporanPresensiController;
 
 // Authenticate
@@ -32,7 +33,7 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/user-store', [UserController::class, 'store'])->name('user-store');
             Route::get('/user-list', [UserController::class, 'getUser'])->name('user-list');
             Route::get('/user-detail/{id}', [UserController::class, 'detail'])->name('user-detail');
-            
+
             // DIVISI
             Route::get('/divisi', [DivisionController::class, 'index'])->name('divisi-index');
             Route::post('/divisi/store', [DivisionController::class, 'store'])->name('divisi-store');
@@ -62,4 +63,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/akun', [AkunController::class, 'index'])->name('akun');
 
     Route::get('/pengumuman', [AnnouncementController::class, 'index'])->name('pengumuman-index');
+
+    Route::get('/izin-cuti', [IzinCutiController::class, 'index'])->name('izin-cuti');
 });
