@@ -46,27 +46,6 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-6">
-                                <div class="avatar-md bg-orange bg-opacity-10 rounded d-flex justify-content-center align-items-center">
-                                    <i class='bx bxs-user text-orange fs-32'></i>
-                                </div>
-                            </div>
-                            <div class="col-6 text-end">
-                                <p class="text-muted mb-0 text-truncate">
-                                    Pegawai
-                                </p>
-                                <h3 class="text-dark mt-1 mb-0">
-                                    20
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-xxl-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-6">
                                 <div class="avatar-md bg-info bg-opacity-10 rounded d-flex justify-content-center align-items-center">
                                     <i class='bx bxs-user-rectangle text-info fs-32'></i>
                                 </div>
@@ -76,7 +55,7 @@
                                     Karyawan
                                 </p>
                                 <h3 class="text-dark mt-1 mb-0">
-                                    20
+                                    {{ $countPegawai }}
                                 </h3>
                             </div>
                         </div>
@@ -97,7 +76,7 @@
                                     Magang
                                 </p>
                                 <h3 class="text-dark mt-1 mb-0">
-                                    20
+                                    {{ $countMagang }}
                                 </h3>
                             </div>
                         </div>
@@ -118,7 +97,7 @@
                                     Laki-laki
                                 </p>
                                 <h3 class="text-dark mt-1 mb-0">
-                                    20
+                                    {{ $laki }}
                                 </h3>
                             </div>
                         </div>
@@ -139,7 +118,7 @@
                                     Perempuan
                                 </p>
                                 <h3 class="text-dark mt-1 mb-0">
-                                    20
+                                    {{ $perempuan }}
                                 </h3>
                             </div>
                         </div>

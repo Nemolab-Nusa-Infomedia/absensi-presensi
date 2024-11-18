@@ -49,6 +49,9 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/pengumuman-buat', [AnnouncementController::class,'store'])->name('pengumuman-store');
 
             Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule-index');
+
+            Route::post('store-schedule', [ScheduleController::class, 'store'])->name('schedule-store');
+            Route::get('/schedule-list', [ScheduleController::class, 'getSchedule'])->name('schedule-list');
         });
 
         Route::post('/user-update/{id}', [UserController::class, 'update'])->name('user-update');
@@ -61,6 +64,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/presensi/scan/in', [PresensiController::class, 'scanIn'])->name('presensi-scan');
     Route::get('/laporan-presensi', [LaporanPresensiController::class, 'index'])->name('laporan-presensi');
     Route::get('/akun', [AkunController::class, 'index'])->name('akun');
+    
 
     Route::get('/pengumuman', [AnnouncementController::class, 'index'])->name('pengumuman-index');
 

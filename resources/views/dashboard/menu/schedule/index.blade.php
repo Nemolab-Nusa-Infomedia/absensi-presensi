@@ -40,23 +40,9 @@
                                 <th class="border-0 py-2">Hari</th>
                                 <th class="border-0 py-2">Jam Masuk</th>
                                 <th class="border-0 py-2">Jam Pulang</th>
-                                <th class="border-0 py-2">Type Kerja</th>
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <th class="border-0 py-2">1</th>
-                                <th class="border-0 py-2">Senin</th>
-                                <th class="border-0 py-2">09.00</th>
-                                <th class="border-0 py-2">17.00</th>
-                                <th class="border-0 py-2">WFH</th>
-                                <th>
-                                    <button type="button" class="btn btn-warning rounded-pill btn-sm" data-bs-target="#edit-schedule" data-bs-toggle="modal"><i class='bx bx-edit'></i></button>
-                                    <button type="button" class="btn btn-danger rounded-pill btn-sm" data-bs-target="#delete-schedule" data-bs-toggle="modal"><i class='bx bx-trash'></i></button>
-                                </th>
-                            </tr>
-                        </tbody>
                     </table>
                 </div>
 
@@ -91,40 +77,35 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="">
+                <form action="{{ route('schedule-store') }}" method="POST">
+            <div class="modal-body">
+                    @csrf
                     <div class="row">
                         <div class="mb-3">
                             <label for="hari" class="form-label">Hari</label>
-                            <input type="text" id="hari" name="" class="form-control" placeholder="masukan hari">
+                            <input type="text" id="hari" name="hari" class="form-control" placeholder="masukan hari">
                         </div>
                         <div class="mb-3">
                             <label for="jamMasuk" class="form-label">Jam Masuk</label>
-                            <input type="time" id="jamMasuk" name="" class="form-control" placeholder="masukan jam masuk">
+                            <input type="time" id="jamMasuk" name="jam_masuk" class="form-control" placeholder="masukan jam masuk">
                         </div>
                         <div class="mb-3">
                             <label for="jamPulang" class="form-label">jam Pulang</label>
-                            <input type="time" id="jamPulang" name="" class="form-control" placeholder="masukan jam pulang">
-                        </div>
-                        <div class="mb-3">
-                            <label for="typeKerja" class="form-label">Type Kerja</label>
-                            <select class="form-control" id="choices-single-no-search" name="" data-choices data-choices-search-false data-choices-removeItem>
-                                <option value="WFO">WFO</option>
-                                <option value="WFH">WFH</option>
-                                <option value="WFA">WFA</option>
-                           </select>
+                            <input type="time" id="jamPulang" name="jam_keluar" class="form-control" placeholder="masukan jam pulang">
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
+        </form>
         </div>
     </div>
 </div>
 
-{{-- tambah jadwal --}}
+{{-- edit jadwal --}}
 <div class="modal fade" id="edit-schedule" aria-hidden="true" aria-labelledby="editSchedule" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -132,36 +113,29 @@
                 <h5 class="modal-title" id="editSchedule">Edit Jadwal</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <form action="{{ route('schedule-store') }}" method="POST">
             <div class="modal-body">
-                <form action="">
+                    @csrf
                     <div class="row">
                         <div class="mb-3">
                             <label for="hari" class="form-label">Hari</label>
-                            <input type="text" id="hari" name="" class="form-control" placeholder="masukan hari" value="">
+                            <input type="text" id="hari" name="hari" class="form-control" placeholder="masukan hari">
                         </div>
                         <div class="mb-3">
                             <label for="jamMasuk" class="form-label">Jam Masuk</label>
-                            <input type="time" id="jamMasuk" name="" class="form-control" placeholder="masukan jam masuk" value="">
+                            <input type="time" id="jamMasuk" name="jam_masuk" class="form-control" placeholder="masukan jam masuk">
                         </div>
                         <div class="mb-3">
                             <label for="jamPulang" class="form-label">jam Pulang</label>
-                            <input type="time" id="jamPulang" name="" class="form-control" placeholder="masukan jam pulang" value="">
-                        </div>
-                        <div class="mb-3">
-                            <label for="typeKerja" class="form-label">Type Kerja</label>
-                            <select class="form-control" id="choices-single-no-search" name="" data-choices data-choices-search-false data-choices-removeItem>
-                                <option value="WFO">WFO</option>
-                                <option value="WFH">WFH</option>
-                                <option value="WFA">WFA</option>
-                           </select>
+                            <input type="time" id="jamPulang" name="jam_keluar" class="form-control" placeholder="masukan jam pulang">
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                <button type="submit" class="btn btn-primary">Simpan</button>
-            </div>
+                </div>
+                <div class="mod0al-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -197,7 +171,7 @@
             serverSide: true,
             paging: false, // Disable default pagination
             ajax: {
-                url: "",
+                url: "{{ route('schedule-list') }}",
                 data: function(d) {
                     d.start = (currentPage - 1) * pageLength; // Tentukan offset data berdasarkan halaman saat ini
                     d.length = pageLength; // Tentukan jumlah data per halaman
@@ -205,9 +179,9 @@
             },
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                {data: 'nameProduct', name: 'nameProduct'},
-                {data: 'namaPembeli', name: 'namaPembeli'},
-                {data: 'noHpPembeli', name: 'noHpPembeli'},
+                {data: 'hari', name: 'hari'},
+                {data: 'jam_masuk', name: 'jam_masuk'},
+                {data: 'jam_keluar', name: 'jam_keluar'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             drawCallback: function(settings) {
