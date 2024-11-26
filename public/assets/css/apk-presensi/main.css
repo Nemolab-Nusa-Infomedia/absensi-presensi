@@ -22,7 +22,7 @@ button.btn-primary {
 }
 
 .scrollable-announcements {
-    max-height: 250px; /* Sesuaikan tinggi maksimal sesuai kebutuhan */
+    max-height: 280px; /* Sesuaikan tinggi maksimal sesuai kebutuhan */
     overflow-y: auto;
 }
 
