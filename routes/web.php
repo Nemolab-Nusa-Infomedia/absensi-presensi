@@ -52,6 +52,9 @@ Route::middleware(['auth'])->group(function () {
 
             Route::post('store-schedule', [ScheduleController::class, 'store'])->name('schedule-store');
             Route::get('/schedule-list', [ScheduleController::class, 'getSchedule'])->name('schedule-list');
+
+
+            Route::get('/izin-cuti-dashboard', [IzinCutiController::class, 'indexDashboard'])->name('izin-cuti-dashboard');
         });
 
         Route::post('/user-update/{id}', [UserController::class, 'update'])->name('user-update');

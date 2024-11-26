@@ -60,7 +60,7 @@
                             <a class="sub-nav-link" href="{{ route('pengumuman-index') }}" >Pengumuman</a>
                         </li>
                         <li class="sub-nav-item">
-                            <a class="sub-nav-link" href="{{ route('pengumuman-index') }}" >Izin/Cuti</a>
+                            <a class="sub-nav-link" href="{{ route('izin-cuti-dashboard') }}" >Izin/Cuti</a>
                         </li>
                     </ul>
                 </div>
