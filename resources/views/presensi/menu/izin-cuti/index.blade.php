@@ -47,6 +47,7 @@
         <div class="card-body">
             <form action="{{ route('izin-cuti-store') }}" method="POST">
                 @csrf
+                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                 <div class="col-md-12 mb-3">
                     <select class="form-control" name="jenis_izin" data-choices id="choices-single-default">
                         <option value="izin">Izin</option>

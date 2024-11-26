@@ -27,6 +27,7 @@ class IzinRequest extends FormRequest
             'keterangan' => 'required',
             'tanggal_mulai' => 'required|date',
             'tanggal_akhir' => 'nullable|date',
+            'is_accepted' => 'nullable',
         ];
     }
 

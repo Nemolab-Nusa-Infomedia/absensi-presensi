@@ -10,7 +10,7 @@ class Divisi extends Model
 {
     protected $guarded = [];
 
-    public function Users(): HasMany
+    public function users(): HasMany
     {
         return $this->hasMany(User::class);
     }

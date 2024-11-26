@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Izin;
 use App\Models\Divisi;
 use App\Models\Attendances;
 use Spatie\Permission\Traits\HasRoles;
@@ -66,5 +67,9 @@ class User extends Authenticatable
     public function attendances(): BelongsTo
     {
         return $this->belongsTo(Attendances::class, 'id', 'user_id');
+    }
+
+    public function izins(): BelongsTo {
+        return $this->belongsTo(Izin::class, 'id', 'user_id');
     }
 }

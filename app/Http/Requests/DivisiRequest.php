@@ -29,7 +29,7 @@ class DivisiRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'Divisi harus diisi',
+            'name.required' => 'Nama divisi harus diisi',
             'name.max' => 'Divisi maksimal 255 karakter',
         ];
     }

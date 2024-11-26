@@ -14,17 +14,17 @@ class IzinCutiController extends Controller
             'title' => 'Izin Cuti'
         ]);
     }
-    
+
     public function store(IzinRequest $request){
         $data = $request->validated();
-        $data['user_id'] = Auth::user()->id;
         $izin = Izin::create($data);    
         
         return redirect()->route('izin-cuti');
     }
 
     public function riwayat(){
-        return view('presensi.menu.izin-cuti.riwayat', [
+        $data = Izin::with('users')->where('user_id', Auth::user()->id)->get();
+        return view('presensi.menu.izin-cuti.riwayat',compact('data'), [
             'title' => 'Riwayat Izin Cuti'
         ]);
     }

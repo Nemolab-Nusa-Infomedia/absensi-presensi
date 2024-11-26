@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('izins', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->enum('jenis_izin', ['izin', 'cuti']);
             $table->string('keterangan');
             $table->date('tanggal_mulai');
             $table->date('tanggal_akhir')->nullable();
+            $table->enum('is_accepted', ['accepted', 'pending','rejected'])->default('pending');
             $table->timestamps();
         });
     }

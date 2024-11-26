@@ -50,6 +50,7 @@
                                     {{-- {{ $ajuanGroup->first()->name }} --}}
                                 </button>
                             </h2>
+                            @foreach($data as $item)
                             <div id="panelsStayOpen" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-heading">
                                 <div class="accordion-body">
                                         <div class="col-lg-12">
@@ -59,15 +60,16 @@
                                                         <div class="avatar-md flex-shrink-0">
                                                             <span class="avatar-title bg-light rounded-circle">
                                                                 {{-- <iconify-icon icon="iconamoon:file-document-duotone" class="@if($ajuan->status == 'pending') text-warning  @elseif($ajuan->status == 'approved') text-success @else text-danger @endif fs-28"></iconify-icon> --}}
-                                                                <iconify-icon icon="iconamoon:file-document-duotone" class="text-success fs-28"></iconify-icon>
+                                                                <iconify-icon icon="iconamoon:file-document-duotone" class="@if ($item->is_accepted == 'pending') text-warning @elseif ($item->is_accepted == 'approved') text-success @else text-danger
+                                                                @endif fs-28"></iconify-icon>
                                                             </span>
                                                         </div>
                                                         <div class="d-block">
                                                             <h5 class="mb-1">
-                                                                Izin
+                                                                {{ ucfirst($item->jenis_izin) }}
                                                             </h5>
                                                             <h6 class="mb-0 text-muted">
-                                                                Vindra Arya Yulian
+                                                                {{ $item->users->name }}
                                                             </h6>
                                                         </div>
                                                     </div>
@@ -75,10 +77,16 @@
                                                         <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center gap-1 gap-md-2">
                                                             <h5 class="card-title badge text-secondary d-flex gap-1 align-items-center py-1 px-2 fs-13 mb-3 border rounded-1">
                                                                 <iconify-icon icon="iconamoon:calendar-2-duotone"></iconify-icon>
-                                                                12-12-2024
+                                                                {{ $item->created_at->format('d M Y') }}
                                                             </h5>
-                                                            <h5 class="card-title badge bg-success text-white d-flex gap-1 align-items-center py-1 px-2 fs-13 mb-3 border rounded-1">
-                                                                Disetujui
+                                                            <h5 class="card-title badge 
+                                                            @if($item->is_accepted == 'pending') bg-warning
+                                                            @elseif($item->is_accepted == 'approved') bg-success
+                                                            @else bg-danger
+                                                            @endif
+                                                            text-white d-flex gap-1 align-items-center py-1 px-2 fs-13 mb-3 border rounded-1">
+                                                                @if ($item->is_accepted == 'pending') Pending @elseif ($item->is_accepted == 'approved') Disetujui @else Ditolak
+                                                                @endif
                                                             </h5>
                                                         </div>
                                                     </div>
@@ -87,6 +95,7 @@
                                         </div>
                                 </div>
                             </div>
+                            @endforeach
                         </div>
                 </div>
             </div>

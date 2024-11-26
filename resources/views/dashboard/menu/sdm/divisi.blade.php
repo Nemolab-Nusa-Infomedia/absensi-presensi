@@ -3,8 +3,8 @@
 @section('content')
 <div class="row">
     <div id="forAlert">
-        @if(session('success'))
-        <div class="alert alert-success alert-icon" role="alert">
+       @if(session('success'))
+        <div class="alert alert-success alert-icon" role="alert" id="success-alert">
             <div class="d-flex align-items-center">
                 <div class="avatar-sm rounded bg-success d-flex justify-content-center align-items-center fs-18 me-2 flex-shrink-0">
                     <i class="bx bx-check-shield text-white"></i>
@@ -15,7 +15,19 @@
                 <button type="button" class="btn-close px-2" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         </div>
+
+        <script>
+            // Menghilangkan alert setelah 2 detik (2000 ms)
+            setTimeout(function() {
+                let alertBox = document.getElementById('success-alert');
+                if (alertBox) {
+                    alertBox.classList.add('fade');
+                    setTimeout(() => alertBox.remove(), 500); // Hapus elemen setelah efek fade selesai
+                }
+            }, 2000);
+        </script>
         @endif
+
         <div class="alert alert-success alert-icon d-none" role="alert" id="alertt">
             <div class="d-flex align-items-center">
                 <div class="avatar-sm rounded bg-success d-flex justify-content-center align-items-center fs-18 me-2 flex-shrink-0">
@@ -28,6 +40,9 @@
             </div>
         </div>
     </div>
+    @error('name')
+        <div class="alert alert-danger m-2">{{ $message }}</div>
+    @enderror
         <div class="col">
         <div class="card">
             <div class="card-body">
