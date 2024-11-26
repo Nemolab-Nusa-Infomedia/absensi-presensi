@@ -10,6 +10,7 @@ use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\IzinCutiController;
 use App\Http\Controllers\LaporanPresensiController;
 
 // Authenticate
@@ -32,7 +33,7 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/user-store', [UserController::class, 'store'])->name('user-store');
             Route::get('/user-list', [UserController::class, 'getUser'])->name('user-list');
             Route::get('/user-detail/{id}', [UserController::class, 'detail'])->name('user-detail');
-            
+
             // DIVISI
             Route::get('/divisi', [DivisionController::class, 'index'])->name('divisi-index');
             Route::post('/divisi/store', [DivisionController::class, 'store'])->name('divisi-store');
@@ -48,6 +49,12 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/pengumuman-buat', [AnnouncementController::class,'store'])->name('pengumuman-store');
 
             Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule-index');
+
+            Route::post('store-schedule', [ScheduleController::class, 'store'])->name('schedule-store');
+            Route::get('/schedule-list', [ScheduleController::class, 'getSchedule'])->name('schedule-list');
+
+
+            Route::get('/izin-cuti-dashboard', [IzinCutiController::class, 'indexDashboard'])->name('izin-cuti-dashboard');
         });
 
         Route::post('/user-update/{id}', [UserController::class, 'update'])->name('user-update');
@@ -61,5 +68,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/laporan-presensi', [LaporanPresensiController::class, 'index'])->name('laporan-presensi');
     Route::get('/akun', [AkunController::class, 'index'])->name('akun');
 
+
     Route::get('/pengumuman', [AnnouncementController::class, 'index'])->name('pengumuman-index');
+
+    Route::get('/izin-cuti', [IzinCutiController::class, 'index'])->name('izin-cuti');
+    Route::post('/izin-cuti-store', [IzinCutiController::class, 'store'])->name('izin-cuti-store');
+    Route::get('/riwayat-izin-cuti', [IzinCutiController::class, 'riwayat'])->name('riwayat-izin-cuti');
 });

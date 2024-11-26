@@ -3,8 +3,8 @@
 @section('content')
 <div class="row">
     <div id="forAlert">
-       @if(session('success'))
-        <div class="alert alert-success alert-icon" role="alert" id="success-alert">
+        @if(session('success'))
+        <div class="alert alert-success alert-icon" role="alert">
             <div class="d-flex align-items-center">
                 <div class="avatar-sm rounded bg-success d-flex justify-content-center align-items-center fs-18 me-2 flex-shrink-0">
                     <i class="bx bx-check-shield text-white"></i>
@@ -15,34 +15,19 @@
                 <button type="button" class="btn-close px-2" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         </div>
-
-        <script>
-            // Menghilangkan alert setelah 2 detik (2000 ms)
-            setTimeout(function() {
-                let alertBox = document.getElementById('success-alert');
-                if (alertBox) {
-                    alertBox.classList.add('fade');
-                    setTimeout(() => alertBox.remove(), 500); // Hapus elemen setelah efek fade selesai
-                }
-            }, 2000);
-        </script>
         @endif
-
         <div class="alert alert-success alert-icon d-none" role="alert" id="alertt">
             <div class="d-flex align-items-center">
                 <div class="avatar-sm rounded bg-success d-flex justify-content-center align-items-center fs-18 me-2 flex-shrink-0">
                     <i class="bx bx-check-shield text-white"></i>
                 </div>
                 <div class="flex-grow-1" id="alertt-text">
-                    Berhasil !! 
+                    Berhasil !!
                 </div>
                 <button type="button" class="btn-close px-2" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         </div>
     </div>
-    @error('name')
-        <div class="alert alert-danger m-2">{{ $message }}</div>
-    @enderror
         <div class="col">
         <div class="card">
             <div class="card-body">
@@ -52,19 +37,19 @@
                         <!-- Input search yang akan dihubungkan dengan DataTable -->
                         <input type="search" class="form-control" id="search" placeholder="Cari"/>
                     </div>
-                    <div>
-                        <button type="button" class="btn btn-primary" data-bs-target="#create-divisi" data-bs-toggle="modal">+ Tambah</button>
-                    </div>
                 </div>
             </div>
             <div>
                 <div class="table-responsive table-centered">
-                    <table id="division-table" class="table text-nowrap mb-0">
+                    <table id="pengumuman-table" class="table text-nowrap mb-0">
                         <thead class="bg-light bg-opacity-50">
                             <tr>
                                 <th class="border-0 py-2">No</th>
                                 <th class="border-0 py-2">Nama</th>
-                                <th></th>
+                                <th class="border-0 py-2">Tanggal</th>
+                                <th class="border-0 py-2">Jenis Izin</th>
+                                <th class="border-0 py-2"></th>
+                                <button type="button" class="btn btn-secondary btn-sm" data-bs-target="#approval" data-bs-toggle="modal">Approv</button>
                             </tr>
                         </thead>
                     </table>
@@ -92,48 +77,21 @@
     </div>
 </div>
 
-{{-- tambah divisi --}}
-<div class="modal fade" id="create-divisi" aria-hidden="true" aria-labelledby="createDivisi" tabindex="-1">
+{{-- approval --}}
+<div class="modal fade" id="approval" aria-hidden="true" aria-labelledby="approval" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="createDivisi">Tambah Divisi</h5>
+                <h5 class="modal-title" id="approval">Approval</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('divisi-store') }}" method="POST">
+                <form action="{{ route('pengumuman-store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="mb-3">
-                            <label for="namaDivisi" class="form-label">Nama Divisi</label>
-                            <input type="text" id="namaDivisi" name="name" class="form-control" placeholder="masukan nama divisi">
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-{{-- edit divisi --}}
-<div class="modal fade" id="edit-divisi" aria-hidden="true" aria-labelledby="editDivisi" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editDivisi">Edit Divisi</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="" id="editDivisiForm" method="POST">
-                    @csrf
-                    <div class="row">
-                        <div class="mb-3">
-                            <label for="namaDivisi" class="form-label">Nama Divisi</label>
-                            <input type="text" id="namaDivisiEdit" name="name" class="form-control" placeholder="masukan nama divisi">
+                            <button type="button" class="btn btn-success btn-sm">Terima</button>
+                            <button type="button" class="btn btn-danger btn-sm">Tolak</button>
                         </div>
                     </div>
                 </div>
@@ -147,7 +105,7 @@
 </div>
 
 {{-- Delete Divisi --}}
-<div class="modal fade" id="delete-divisi" aria-hidden="true" aria-labelledby="deleteDivisi" tabindex="-1">
+{{-- <div class="modal fade" id="delete-divisi" aria-hidden="true" aria-labelledby="deleteDivisi" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -163,7 +121,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 <script type="text/javascript">
     $(function () {
@@ -171,13 +129,13 @@
         var pageLength = 10; // Jumlah data per halaman
 
         // Inisialisasi DataTable dengan paging dinonaktifkan
-        var table = $('#division-table').DataTable({
+        var table = $('#pengumuman-table').DataTable({
             dom: '<"top">rt<"clear">', // Nonaktifkan paging default
             processing: true,
             serverSide: true,
             paging: false, // Disable default pagination
             ajax: {
-                url: "{{ route('divisi-list') }}",
+                url: "{{ route('pengumuman-list') }}",
                 data: function(d) {
                     d.start = (currentPage - 1) * pageLength; // Tentukan offset data berdasarkan halaman saat ini
                     d.length = pageLength; // Tentukan jumlah data per halaman
@@ -185,7 +143,10 @@
             },
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                {data: 'name', name: 'name'},
+                {data: 'image_header', name: 'image_header'},
+                {data: 'title', name: 'title'},
+                {data: 'body', name: 'body'},
+                {data: 'writter', name: 'writter'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             drawCallback: function(settings) {
@@ -241,7 +202,7 @@
             // Reload DataTable with new page number
             table.ajax.reload();
         });
-        $('#division-table').on('click', '.btn-edit', function () {
+        $('#pengumuman-table').on('click', '.btn-edit', function () {
             var id = $(this).data('id');
             // Ambil data dari server untuk mengisi form
             $.ajax({
@@ -294,7 +255,7 @@
                     },
                     success: function(response) {
                         $('#delete-divisi').modal('hide');  // Tutup modal setelah berhasil hapus
-                        $('#division-table').DataTable().ajax.reload();  // Reload DataTables
+                        $('#pengumuman-table').DataTable().ajax.reload();  // Reload DataTables
 
                         // Tampilkan pesan sukses
                        $('#alertt').removeClass('d-none');

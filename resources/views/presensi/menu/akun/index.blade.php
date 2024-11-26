@@ -17,7 +17,7 @@
                 </a>
             </div>
             <div class="col">
-                <a href="">
+                <a href="{{ route('izin-cuti') }}">
                     <img src="{{ asset('assets/images/apk-presensi/menu/cuti.png') }}" alt="">
                     <p>Izin Cuti</p>
                 </a>

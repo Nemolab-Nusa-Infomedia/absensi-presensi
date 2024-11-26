@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class PresensiController extends Controller
 {
     public function index(){
-        $pengumuman = Announcement::all();
+        $$pengumuman = Announcement::orderBy('created_at', 'desc')->get();
         $user_id = Auth::user()->id;
         $user = Attendances::where('user_id', $user_id)->first();
 
