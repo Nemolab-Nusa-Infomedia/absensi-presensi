@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class PresensiController extends Controller
 {
     public function index(){
-        $$pengumuman = Announcement::orderBy('created_at', 'desc')->get();
+        $pengumuman = Announcement::orderBy('created_at', 'desc')->get();
         $user_id = Auth::user()->id;
         $user = Attendances::where('user_id', $user_id)->first();
 
@@ -21,7 +21,7 @@ class PresensiController extends Controller
                         ->first();
 
         $check_in = $hariIniMasuk ? Carbon::parse($hariIniMasuk->check_in)->format('H:i:s') . ' WIB' : '-- : -- : -- WIB';
-        $check_out = $hariIniMasuk && $hariIniMasuk->check_out ? Carbon::parse($hariIniMasuk->check_out)->format('H:i:s') . ' WIB' : '-- : -- : -- WIB'; 
+        $check_out = $hariIniMasuk && $hariIniMasuk->check_out ? Carbon::parse($hariIniMasuk->check_out)->format('H:i:s') . ' WIB' : '-- : -- : -- WIB';
         return view('presensi.menu.homepage.index', compact('user','check_in','check_out','pengumuman'), [
             'title' => 'Presensi - Hugostudio Presensi',
         ]);
