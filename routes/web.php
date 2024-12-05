@@ -55,6 +55,7 @@ Route::middleware(['auth'])->group(function () {
 
 
             Route::get('/izin-cuti-dashboard', [IzinCutiController::class, 'indexDashboard'])->name('izin-cuti-dashboard');
+            Route::get('/izin-cuti-list', [IzinCutiController::class, 'getIzin'])->name('izin-cuti-list');
         });
 
         Route::post('/user-update/{id}', [UserController::class, 'update'])->name('user-update');
@@ -74,4 +75,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/izin-cuti', [IzinCutiController::class, 'index'])->name('izin-cuti');
     Route::post('/izin-cuti-store', [IzinCutiController::class, 'store'])->name('izin-cuti-store');
     Route::get('/riwayat-izin-cuti', [IzinCutiController::class, 'riwayat'])->name('riwayat-izin-cuti');
+
+    Route::get('/setujui-izin-cuti/{id}', [IzinCutiController::class, 'accptIzin'])->name('accpt-izin-cuti');
+    Route::get('/tolak-izin-cuti/{id}', [IzinCutiController::class, 'rejectIzin'])->name('reject-izin-cuti');
 });

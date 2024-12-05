@@ -81,11 +81,13 @@
                                                             </h5>
                                                             <h5 class="card-title badge 
                                                             @if($item->is_accepted == 'pending') bg-warning
-                                                            @elseif($item->is_accepted == 'approved') bg-success
+                                                            @elseif($item->is_accepted == 'accepted') bg-success
                                                             @else bg-danger
                                                             @endif
                                                             text-white d-flex gap-1 align-items-center py-1 px-2 fs-13 mb-3 border rounded-1">
-                                                                @if ($item->is_accepted == 'pending') Pending @elseif ($item->is_accepted == 'approved') Disetujui @else Ditolak
+                                                                @if ($item->is_accepted == 'pending') Pending @elseif ($item->is_accepted == 'accepted') Disetujui 
+                                                                @else 
+                                                                Ditolak
                                                                 @endif
                                                             </h5>
                                                         </div>

@@ -46,10 +46,10 @@
                             <tr>
                                 <th class="border-0 py-2">No</th>
                                 <th class="border-0 py-2">Nama</th>
-                                <th class="border-0 py-2">Tanggal</th>
+                                <th class="border-0 py-2">Tanggal Mulai</th>
+                                <th class="border-0 py-2">Tanggal Akhir</th>
                                 <th class="border-0 py-2">Jenis Izin</th>
                                 <th class="border-0 py-2"></th>
-                                <button type="button" class="btn btn-secondary btn-sm" data-bs-target="#approval" data-bs-toggle="modal">Approv</button>
                             </tr>
                         </thead>
                     </table>
@@ -103,26 +103,6 @@
         </div>
     </div>
 </div>
-
-{{-- Delete Divisi --}}
-{{-- <div class="modal fade" id="delete-divisi" aria-hidden="true" aria-labelledby="deleteDivisi" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="deleteDivisi">Hapus Divisi</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Apakah anda yakin akan menghapus divisi ini ?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                <button type="button" id="deleteDivisiBtn" class="btn btn-danger">Hapus</button>
-            </div>
-        </div>
-    </div>
-</div> --}}
-
 <script type="text/javascript">
     $(function () {
         var currentPage = 1;
@@ -135,7 +115,7 @@
             serverSide: true,
             paging: false, // Disable default pagination
             ajax: {
-                url: "{{ route('pengumuman-list') }}",
+                url: "{{ route('izin-cuti-list') }}",
                 data: function(d) {
                     d.start = (currentPage - 1) * pageLength; // Tentukan offset data berdasarkan halaman saat ini
                     d.length = pageLength; // Tentukan jumlah data per halaman
@@ -143,10 +123,10 @@
             },
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                {data: 'image_header', name: 'image_header'},
-                {data: 'title', name: 'title'},
-                {data: 'body', name: 'body'},
-                {data: 'writter', name: 'writter'},
+                {data: 'users', name: 'users'},
+                {data: 'tanggal_mulai', name: 'tanggal_mulai'},
+                {data: 'tanggal_akhir', name: 'tanggal_akhir'},
+                {data: 'jenis_izin', name: 'jenis_izin'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             drawCallback: function(settings) {
