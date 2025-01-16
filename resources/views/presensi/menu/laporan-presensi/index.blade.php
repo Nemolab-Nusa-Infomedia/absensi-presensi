@@ -36,11 +36,10 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header d-flex align-items-center">
-                <h5 class="card-title">
-                    Aktifitas
-                </h5>
+                <h5 class="card-title">Aktifitas</h5>
                 <div class="ms-auto">
-                    <a href="#" class="text-primary">
+                    <!-- Tombol untuk membuka filter -->
+                    <a href="#" class="text-primary" data-bs-toggle="modal" data-bs-target="#filterModal">
                         <i class='bx bx-calendar'></i>
                     </a>
                 </div>
@@ -48,9 +47,10 @@
             <div class="card-body scrollable-content">
                 @foreach($attendances as $key)
                     <div class="d-flex align-items-start">
-                        <p class="mb-0 mt-2 pe-3 me-2">
+                        <p class="mb-0 mt-2 pe-3 me-2 text-start day">
                             {{ $key['created_at'] }}
                         </p>
+                        
                         <div class="position-relative ps-4">
                             <span class="position-absolute start-0 top-0 border border-dashed h-100"></span>
                             <div class="mb-4">
@@ -82,10 +82,31 @@
                     </div>
                 @endforeach
             </div>
-            <!-- end card body -->
         </div>
-        <!-- end card -->
     </div>
-    <!-- end col -->
 </div>
+
+<!-- Modal untuk Filter -->
+<div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form method="GET" action="{{ route('laporan-presensi') }}">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="filterModalLabel">Filter Data</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="month" class="form-label">Bulan</label>
+                        <input type="month" id="month" name="month" class="form-control" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
 @endsection

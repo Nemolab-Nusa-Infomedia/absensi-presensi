@@ -31,7 +31,7 @@ class AttendanceController extends Controller
 
          // Cek apakah user berada dalam radius kantor
         if ($this->isWithinRadius($officeLocation->latitude, $officeLocation->longitude, $latitude, $longitude, $radius)) {
-            
+
             // Cari record attendance untuk hari ini
             $attendance = Attendances::where('user_id', $user->id)
                 ->whereDate('check_in', now()->toDateString()) // Cek apakah pada hari yang sama
