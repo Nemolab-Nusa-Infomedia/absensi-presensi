@@ -1,34 +1,52 @@
-<header class="text-white text-center py-4" style="background-color: #007bff;">
-    <div class="container">
-        <div class="d-flex justify-content-between align-items-center">
-            <div class="logo d-flex align-items-center">
-                <i class="fas fa-home fa-lg mr-2"></i>
-                <img src="{{ asset('assets/images/logo/hugostudio.png') }}" width="70px" alt="">
-            </div>
-            <div class="ms-auto">
-                <div class="d-block">
-                    <h5 id="time" class="mb-1 text-end text-white">
+<header class="topbar">
+    <div class="container-xxl">
+        <div class="navbar-header">
+            <div class="d-flex align-items-center gap-2">
+                <!-- Menu Toggle Button -->
+                <div class="topbar-item">
+                    <button type="button" class="button-toggle-menu">
+                        <iconify-icon icon="iconamoon:menu-burger-horizontal" class="fs-22"></iconify-icon>
+                    </button>
+                </div>
 
-                    </h5>
-                    <h6 id="date" class="mb-0 text-end text-white">
-
-                    </h6>
+                <!-- App Search-->
+                <div class="align-items-center d-none d-md-block me-auto">
+                    <div class="d-block">
+                        <p id="date" class="fs-12 mb-0"></p>
+                        <h5 id="time" class="mb-1 fs-14"></h5>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="profile mt-3 text-center">
-            <div class="d-flex flex-wrap align-items-center gap-2">
-                <img src="{{ asset('storage/'.Auth::user()->profile_image) }}" alt="" class="rounded-circle avatar-md" />
-                <div class="d-block">
-                    <h5 class="mb-1 text-start text-white">
-                        {{ Auth::user()->name }}
-                    </h5>
-                    <h6 class="mb-0 text-start text-white job-title">
-                        {{ Auth::user()->divisis->name }}
-                    </h6>
+
+            <div class="d-flex align-items-center gap-1">
+                <!-- Theme Color (Light/Dark) -->
+                <div class="topbar-item">
+                    <button type="button" class="topbar-button" id="light-dark-mode">
+                        <iconify-icon icon="iconamoon:mode-dark-duotone" class="fs-24 align-middle"></iconify-icon>
+                    </button>
                 </div>
-                <div class="ms-auto">
-                    <i class='bx bxs-bell'></i>
+
+                <!-- User -->
+                <div class="dropdown topbar-item">
+                    <a type="button" class="topbar-button" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="d-flex align-items-center">
+                            <img class="rounded-circle" width="32" src="{{ Auth::user()->profile_image ? asset('storage/'.Auth::user()->profile_image) : url('assets/images/users/dummy-avatar.jpg') }}" alt="avatar"/>
+                        </span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <!-- item-->
+                        <h6 class="dropdown-header">{{ Auth::user()->name }} - {{ Auth::user()->divisis->name }}</h6>
+                        <a class="dropdown-item" href="{{ route('akun') }}">
+                            <i class="bx bx-user-circle text-muted fs-18 align-middle me-1"></i>
+                            <span class="align-middle">Profile</span>
+                        </a>
+                        <div class="dropdown-divider my-1"></div>
+
+                        <a class="dropdown-item text-danger" href="{{ route('logout') }}">
+                            <i class="bx bx-log-out fs-18 align-middle me-1"></i>
+                            <span class="align-middle">Logout</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

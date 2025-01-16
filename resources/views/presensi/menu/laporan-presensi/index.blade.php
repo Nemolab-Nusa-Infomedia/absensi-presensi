@@ -1,7 +1,7 @@
 @extends('presensi.components.layout')
 
-@section('content')
-<section class="text-center my-4">
+@section('content-presensi')
+<section class="text-center">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -45,10 +45,10 @@
                     </a>
                 </div>
             </div>
-            <div class="card-body scrollable-content">
+            <div class="card-body scrollable-content mx-auto">
                 @foreach($attendances as $key)
                     <div class="d-flex align-items-start">
-                        <p class="mb-0 mt-2 pe-3 me-2 hari">
+                        <p class="mb-0 mt-2 pe-3 me-2">
                             {{ $key['created_at'] }}
                         </p>
                         <div class="position-relative ps-4">
@@ -59,19 +59,19 @@
                                 </span>
                                 <div class="d-flex flex-wrap align-items-center gap-2">
                                     <div class="d-block">
-                                        <h5 class="mb-1 text-start text-dark">
+                                        <h5 class="mb-1 text-start text-dark check">
                                             Presensi Hadir
                                         </h5>
-                                        <h5 class="mb-1 text-start text-dark">
+                                        <h5 class="mb-1 text-start text-dark check">
                                             Presensi Pulang
                                         </h5>
                                     </div>
                                     <div class="ms-auto">
                                         <div class="d-block">
-                                            <h5 class="mb-1 text-end text-dark">
+                                            <h5 class="mb-1 text-end text-dark check">
                                                 {{ $key['check_in'] }}
                                             </h5>
-                                            <h5 class="mb-1 text-end text-dark">
+                                            <h5 class="mb-1 text-end text-dark check">
                                                 {{ $key['check_out'] }}
                                             </h5>
                                         </div>
