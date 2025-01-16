@@ -24,7 +24,8 @@ class LaporanPresensiController extends Controller
         $userAttendances = $query->get()->sortByDesc('created_at');
         $attendances = $userAttendances->map(function ($attendance) {
             return [
-                'created_at' => Carbon::parse($attendance->created_at)->locale('id')->isoFormat('dddd') . "\n" . Carbon::parse($attendance->created_at)->isoFormat('D MMMM YYYY'),
+                'hari' => Carbon::parse($attendance->created_at)->locale('id')->isoFormat('dddd'),
+                'tanggal_bulan_tahun' => Carbon::parse($attendance->created_at)->isoFormat('D MMMM YYYY'),
                 'check_in' => Carbon::parse($attendance->check_in)->format('H:i:s'),
                 'check_out' => $attendance->check_out ? Carbon::parse($attendance->check_out)->format('H:i:s') : '-',
             ];
