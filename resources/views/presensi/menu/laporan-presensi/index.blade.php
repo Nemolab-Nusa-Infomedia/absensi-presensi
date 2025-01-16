@@ -47,7 +47,7 @@
             <div class="card-body scrollable-content">
                 @foreach($attendances as $key)
                     <div class="d-flex align-items-start">
-                        <p class="mb-0 mt-2 pe-3 me-2 day">
+                        <p class="mb-0 pe-3 me-2 day">
                             {{ $key['hari'] }}<br>
                             {{ $key['tanggal_bulan_tahun'] }}
                         </p>
