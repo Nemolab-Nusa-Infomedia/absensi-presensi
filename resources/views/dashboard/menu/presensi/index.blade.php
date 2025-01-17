@@ -80,53 +80,38 @@
 
 <script type="text/javascript">
     $(function () {
-        var currentPage = 1;
-        var pageLength = 10; // Jumlah data per halaman
+        let currentPage = 1;
+        const pageLength = 10; // Jumlah data per halaman
 
-        // Inisialisasi DataTable dengan paging dinonaktifkan
-        var table = $('#attendances-table').DataTable({
+        // Inisialisasi DataTable tanpa pagination bawaan
+        const table = $('#attendances-table').DataTable({
             dom: '<"top">rt<"clear">', // Nonaktifkan paging default
             processing: true,
             serverSide: true,
             paging: false, // Disable default pagination
             ajax: {
                 url: "{{ route('daftar-hadir-list') }}",
-                data: function(d) {
-                    d.start = (currentPage - 1) * pageLength; // Tentukan offset data berdasarkan halaman saat ini
+                data: function (d) {
+                    d.start = (currentPage - 1) * pageLength; // Tentukan offset
                     d.length = pageLength; // Tentukan jumlah data per halaman
                 }
             },
             columns: [
-                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                {data: 'users', name: 'users'},
-                {data: 'created_at', name: 'created_at'},
-                {data: 'check_in', name: 'check_in'},
-                {data: 'check_out', name: 'check_out'},
-                {data: 'notes', name: 'notes'},
+                { data: 'DT_RowIndex', name: 'DT_RowIndex' },
+                { data: 'users', name: 'users' },
+                { data: 'created_at', name: 'created_at' },
+                { data: 'check_in', name: 'check_in' },
+                { data: 'check_out', name: 'check_out' },
+                { data: 'notes', name: 'notes' },
             ],
-            drawCallback: function(settings) {
-                var pageInfo = table.page.info();
-                var totalPages = Math.ceil(pageInfo.recordsDisplay / pageLength); // Hitung total halaman
+            drawCallback: function (settings) {
+                const pageInfo = table.page.info();
+                const totalPages = Math.ceil(pageInfo.recordsTotal / pageLength); // Hitung total halaman
 
-                // Update pagination links
-                var paginationHtml = '';
-                for (var i = 1; i <= totalPages; i++) {
-                    var activeClass = (i === currentPage) ? 'active' : '';
-                    paginationHtml += '<li class="page-item ' + activeClass + '">';
-                    paginationHtml += '<a href="#" class="page-link" data-page="' + i + '">' + i + '</a>';
-                    paginationHtml += '</li>';
-                }
-
-                // Next and previous buttons
-                paginationHtml = '<li class="page-item ' + (currentPage === 1 ? 'disabled' : '') + '"><a href="#" class="page-link" data-page="prev"><i class="bx bx-left-arrow-alt"></i></a></li>'
-                                + paginationHtml
-                                + '<li class="page-item ' + (currentPage === totalPages ? 'disabled' : '') + '"><a href="#" class="page-link" data-page="next"><i class="bx bx-right-arrow-alt"></i></a></li>';
-
-                $('#custom-pagination').html(paginationHtml);
-
-                // Update current entries info
-                $('#current-entries').text(pageInfo.start + 1 + '-' + pageInfo.end);
-                $('#total-entries').text(pageInfo.recordsDisplay);
+                // Update custom pagination
+                updatePagination(totalPages);
+                $('#current-entries').text(`${pageInfo.start + 1}-${pageInfo.end}`);
+                $('#total-entries').text(pageInfo.recordsTotal);
             }
         });
 
@@ -135,26 +120,54 @@
             table.search(this.value).draw();
         });
 
-        // Custom Pagination Event Handling
-        $('#custom-pagination').on('click', 'a.page-link', function(e) {
+        // Fungsi untuk memperbarui pagination custom
+        function updatePagination(totalPages) {
+            let paginationHtml = '';
+
+            // Tombol Previous
+            paginationHtml += `
+                <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+                    <a href="#" class="page-link" data-page="prev">
+                        <i class="bx bx-left-arrow-alt"></i>
+                    </a>
+                </li>
+            `;
+
+            // Nomor Halaman
+            for (let i = 1; i <= totalPages; i++) {
+                paginationHtml += `
+                    <li class="page-item ${i === currentPage ? 'active' : ''}">
+                        <a href="#" class="page-link" data-page="${i}">${i}</a>
+                    </li>
+                `;
+            }
+
+            // Tombol Next
+            paginationHtml += `
+                <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+                    <a href="#" class="page-link" data-page="next">
+                        <i class="bx bx-right-arrow-alt"></i>
+                    </a>
+                </li>
+            `;
+
+            $('#custom-pagination').html(paginationHtml);
+        }
+
+        // Event handling untuk custom pagination
+        $('#custom-pagination').on('click', 'a.page-link', function (e) {
             e.preventDefault();
+            const page = $(this).data('page');
 
-            var page = $(this).data('page');
-
-            // Update current page based on custom pagination
-            if (page === "prev") {
-                if (currentPage > 1) {
-                    currentPage--;
-                }
-            } else if (page === "next") {
-                if (currentPage < Math.ceil(table.page.info().recordsDisplay / pageLength)) {
-                    currentPage++;
-                }
-            } else {
+            if (page === 'prev' && currentPage > 1) {
+                currentPage--;
+            } else if (page === 'next' && currentPage < Math.ceil(table.page.info().recordsTotal / pageLength)) {
+                currentPage++;
+            } else if (typeof page === 'number') {
                 currentPage = page;
             }
 
-            // Reload DataTable with new page number
+            // Reload DataTable dengan halaman baru
             table.ajax.reload();
         });
     });
