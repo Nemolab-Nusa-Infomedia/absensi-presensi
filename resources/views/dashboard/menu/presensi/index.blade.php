@@ -88,11 +88,11 @@
             dom: '<"top">rt<"clear">', // Nonaktifkan paging default
             processing: true,
             serverSide: true,
-            paging: false, // Disable default pagination
+            paging: false, // Nonaktifkan pagination bawaan
             ajax: {
                 url: "{{ route('daftar-hadir-list') }}",
                 data: function (d) {
-                    d.start = (currentPage - 1) * pageLength; // Tentukan offset
+                    d.start = (currentPage - 1) * pageLength; // Tentukan offset berdasarkan halaman saat ini
                     d.length = pageLength; // Tentukan jumlah data per halaman
                 }
             },
@@ -108,7 +108,7 @@
                 const pageInfo = table.page.info();
                 const totalPages = Math.ceil(pageInfo.recordsTotal / pageLength); // Hitung total halaman
 
-                // Update custom pagination
+                // Perbarui custom pagination
                 updatePagination(totalPages);
                 $('#current-entries').text(`${pageInfo.start + 1}-${pageInfo.end}`);
                 $('#total-entries').text(pageInfo.recordsTotal);
@@ -133,11 +133,48 @@
                 </li>
             `;
 
-            // Nomor Halaman
-            for (let i = 1; i <= totalPages; i++) {
+            // Logika untuk membatasi tampilan halaman
+            if (totalPages <= 5) {
+                // Tampilkan semua halaman jika totalPages <= 5
+                for (let i = 1; i <= totalPages; i++) {
+                    paginationHtml += `
+                        <li class="page-item ${i === currentPage ? 'active' : ''}">
+                            <a href="#" class="page-link" data-page="${i}">${i}</a>
+                        </li>
+                    `;
+                }
+            } else {
+                // Halaman pertama
                 paginationHtml += `
-                    <li class="page-item ${i === currentPage ? 'active' : ''}">
-                        <a href="#" class="page-link" data-page="${i}">${i}</a>
+                    <li class="page-item ${1 === currentPage ? 'active' : ''}">
+                        <a href="#" class="page-link" data-page="1">1</a>
+                    </li>
+                `;
+
+                if (currentPage > 3) {
+                    paginationHtml += `<li class="page-item disabled"><span class="page-link">...</span></li>`;
+                }
+
+                // Halaman sekitar currentPage
+                const start = Math.max(2, currentPage - 1);
+                const end = Math.min(totalPages - 1, currentPage + 1);
+
+                for (let i = start; i <= end; i++) {
+                    paginationHtml += `
+                        <li class="page-item ${i === currentPage ? 'active' : ''}">
+                            <a href="#" class="page-link" data-page="${i}">${i}</a>
+                        </li>
+                    `;
+                }
+
+                if (currentPage < totalPages - 2) {
+                    paginationHtml += `<li class="page-item disabled"><span class="page-link">...</span></li>`;
+                }
+
+                // Halaman terakhir
+                paginationHtml += `
+                    <li class="page-item ${totalPages === currentPage ? 'active' : ''}">
+                        <a href="#" class="page-link" data-page="${totalPages}">${totalPages}</a>
                     </li>
                 `;
             }
