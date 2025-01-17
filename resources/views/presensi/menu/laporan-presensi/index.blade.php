@@ -51,7 +51,7 @@
                             {{ $key['hari'] }}<br>
                             {{ $key['tanggal_bulan_tahun'] }}
                         </p>
-                        
+
                         <div class="position-relative ps-4">
                             <span class="position-absolute start-0 top-0 border border-dashed h-100"></span>
                             <div class="mb-4">
@@ -87,7 +87,6 @@
     </div>
 </div>
 
-<!-- Modal untuk Filter -->
 <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <form method="GET" action="{{ route('laporan-presensi') }}">
@@ -99,7 +98,8 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="month" class="form-label">Bulan</label>
-                        <input type="month" id="month" name="month" class="form-control" required>
+                        <input type="month" id="month" name="month" class="form-control"
+                               value="{{ $selectedMonthYear }}" required>
                     </div>
                 </div>
                 <div class="modal-footer">

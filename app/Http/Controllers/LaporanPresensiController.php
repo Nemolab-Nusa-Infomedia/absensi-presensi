@@ -12,13 +12,14 @@ class LaporanPresensiController extends Controller
     public function index(Request $request){
         $user = Auth::user()->id;
 
-        // Default: Menampilkan data bulan dan tahun sekarang
-        $currentMonth = now()->month; // Bulan saat ini
-        $currentYear = now()->year;  // Tahun saat ini
+        // Ambil nilai bulan dan tahun dari input 'month', atau gunakan bulan dan tahun sekarang jika tidak ada
+        $selectedMonthYear = $request->input('month', now()->format('Y-m'));
+        [$selectedYear, $selectedMonth] = explode('-', $selectedMonthYear);
 
+        // Query data dengan filter dinamis
         $userAttendances = Attendances::where('user_id', $user)
-            ->whereMonth('created_at', $currentMonth)
-            ->whereYear('created_at', $currentYear)
+            ->whereMonth('created_at', $selectedMonth)
+            ->whereYear('created_at', $selectedYear)
             ->get()
             ->sortByDesc('created_at');
 
@@ -31,7 +32,7 @@ class LaporanPresensiController extends Controller
             ];
         });
 
-        return view('presensi.menu.laporan-presensi.index', compact('attendances'), [
+        return view('presensi.menu.laporan-presensi.index', compact('attendances', 'selectedMonthYear'), [
             'title' => 'Laporan Presensi'
         ]);
     }
