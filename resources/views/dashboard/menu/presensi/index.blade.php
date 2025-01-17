@@ -36,6 +36,11 @@
                         <!-- Input search yang akan dihubungkan dengan DataTable -->
                         <input type="search" class="form-control" id="search" placeholder="Cari"/>
                     </div>
+                    <div>
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exportModal">
+                            <i class='bx bxs-file-export mb-1'></i> Export
+                        </button>
+                    </div>
                 </div>
             </div>
             <div>
@@ -73,6 +78,43 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<!-- Modal Ekspor -->
+<div class="modal fade" id="exportModal" tabindex="-1" aria-labelledby="exportModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form method="GET" action="{{ route('export-attendances') }}">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exportModalLabel">Export Data</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="month" class="form-label">Bulan</label>
+                        <select class="form-select" name="month" id="month">
+                            <option value="">Semua Bulan</option>
+                            @foreach (range(1, 12) as $m)
+                                <option value="{{ $m }}">{{ date('F', mktime(0, 0, 0, $m, 10)) }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="year" class="form-label">Tahun</label>
+                        <select class="form-select" name="year" id="year">
+                            <option value="">Semua Tahun</option>
+                            @foreach (range(date('Y'), 2020) as $y)
+                                <option value="{{ $y }}">{{ $y }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Export</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 
