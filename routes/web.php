@@ -44,6 +44,7 @@ Route::middleware(['auth'])->group(function () {
 
             Route::get('/daftar-hadir', [AttendanceController::class,'index'])->name('daftar-hadir');
             Route::get('/daftar-hadir-list', [AttendanceController::class,'getAttendances'])->name('daftar-hadir-list');
+            Route::get('/export-attendances', [AttendanceController::class, 'exportAttendances'])->name('export-attendances');
 
             Route::get('/pengumuman-list', [AnnouncementController::class,'getAnnouncement'])->name('pengumuman-list');
             Route::post('/pengumuman-buat', [AnnouncementController::class,'store'])->name('pengumuman-store');

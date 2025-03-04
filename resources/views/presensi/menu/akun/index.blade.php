@@ -1,7 +1,7 @@
 @extends('presensi.components.layout')
 
-@section('content')
-<section class="text-center my-4">
+@section('content-presensi')
+<section class="text-center">
     <div class="container">
         <div class="row">
             <div class="col">

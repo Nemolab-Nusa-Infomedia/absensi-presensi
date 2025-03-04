@@ -1,6 +1,6 @@
 @extends('presensi.components.layout')
 
-@section('content')
+@section('content-presensi')
 <section class="text-center my-4">
     <div class="container">
         <div class="row">
@@ -79,7 +79,7 @@
                                                                 <iconify-icon icon="iconamoon:calendar-2-duotone"></iconify-icon>
                                                                 {{ $item->created_at->format('d M Y') }}
                                                             </h5>
-                                                            <h5 class="card-title badge 
+                                                            <h5 class="card-title badge
                                                             @if($item->is_accepted == 'pending') bg-warning
                                                             @elseif($item->is_accepted == 'accepted') bg-success
                                                             @else bg-danger

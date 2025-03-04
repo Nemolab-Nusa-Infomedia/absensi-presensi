@@ -6,7 +6,10 @@ use Carbon\Carbon;
 use App\Models\Location;
 use App\Models\Attendances;
 use Illuminate\Http\Request;
+use App\Exports\AttendancesExport;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 
 class AttendanceController extends Controller
@@ -31,7 +34,7 @@ class AttendanceController extends Controller
 
          // Cek apakah user berada dalam radius kantor
         if ($this->isWithinRadius($officeLocation->latitude, $officeLocation->longitude, $latitude, $longitude, $radius)) {
-            
+
             // Cari record attendance untuk hari ini
             $attendance = Attendances::where('user_id', $user->id)
                 ->whereDate('check_in', now()->toDateString()) // Cek apakah pada hari yang sama
@@ -99,5 +102,13 @@ class AttendanceController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
+    }
+
+    public function exportAttendances(Request $request)
+    {
+        $month = $request->input('month');
+        $year = $request->input('year');
+
+        return Excel::download(new AttendancesExport($month, $year), 'attendances.xlsx');
     }
 }

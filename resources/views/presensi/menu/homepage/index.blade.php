@@ -1,6 +1,6 @@
 @extends('presensi.components.layout')
 
-@section('content')
+@section('content-presensi')
     <!-- Attendance Buttons -->
     <div class="container text-center">
         <div class="row">
@@ -51,15 +51,14 @@
     </section>
 
     <!-- Announcements -->
-    <section class="container mb-0 py-3">
+    <section class="container mb-0">
         <div class="d-flex justify-content-between">
             <h5>Pengumuman</h5>
             <a href="#">Lihat lainnya</a>
         </div>
         <div class="row col-md-12 scrollable-announcements">
-            <div class="col-md-3">
-
-                @forelse ( $pengumuman as $items )
+            @forelse ( $pengumuman as $items )
+            <div class="col-md-12">
                 <div class="announcement-card my-2 p-3 mb-2">
                     <div class="d-flex flex-wrap align-items-center gap-2">
                         <img src="{{ asset('storage/'.$items->image_header) }}" alt="" class="" style="width: 100px" />
@@ -74,10 +73,10 @@
                         </div>
                     </div>
                 </div>
-                @empty
-                    Belum ada pengumuman
-                @endforelse
             </div>
+            @empty
+                Belum ada pengumuman
+            @endforelse
         </div>
     </section>
 @endsection

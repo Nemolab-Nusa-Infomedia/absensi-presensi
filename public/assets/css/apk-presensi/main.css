@@ -22,7 +22,7 @@ button.btn-primary {
 }
 
 .scrollable-announcements {
-    max-height: 280px; /* Sesuaikan tinggi maksimal sesuai kebutuhan */
+    max-height: 330px; /* Sesuaikan tinggi maksimal sesuai kebutuhan */
     overflow-y: auto;
 }
 
@@ -45,7 +45,17 @@ button.btn-primary {
     .profile h5, .profile p {
         font-size: 0.9rem;
     }
+    .check {
+        font-size: 10px;
+    }
+    .day{
+        font-size: 12px;
+    }
 }
+
+/* p.text-start {
+    white-space: pre-wrap;
+} */
 
 .content-presensi{
     height: 100vh;
@@ -53,7 +63,6 @@ button.btn-primary {
 }
 
 .scrollable-content {
-    max-height: 330px;
+    max-height: 420px;
     overflow-y: auto;
 }
-
