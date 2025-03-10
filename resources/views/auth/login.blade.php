@@ -66,18 +66,26 @@
                                         @csrf
                                         <div class="mb-3">
                                             <label class="form-label" for="email">Email</label>
-                                            <input type="email" id="email" name="email" class="form-control" placeholder="Masukkan email" />
+                                            <input type="email" id="email" name="email" class="form-control" placeholder="Masukkan email" required />
                                         </div>
                                         <div class="mb-3">
-                                            <a href="auth-password2.php" class="float-end text-muted text-underline-dashed ms-1">Reset password</a>
+                                            {{-- <a href="auth-password2.php" class="float-end text-muted text-underline-dashed ms-1">Reset password</a> --}}
                                             <label class="form-label" for="password">Kata Sandi</label>
-                                            <input type="password" id="password" class="form-control" name="password" placeholder="Masukkan kata sandi" />
+                                            <input type="password" id="password" class="form-control" name="password" placeholder="Masukkan kata sandi" required />
                                         </div>
 
-                                        <!-- Tambahkan checkbox untuk Show Password -->
-                                        <div class="form-check mb-3">
-                                            <input type="checkbox" class="form-check-input" id="showPassword" onclick="togglePassword()">
-                                            <label class="form-check-label" for="showPassword">Tampilkan Kata Sandi</label>
+                                        <!-- Checkbox untuk Menampilkan Kata Sandi -->
+                                        <div class="d-flex justify-content-between">
+                                            <div class="form-check mb-3">
+                                                <input type="checkbox" class="form-check-input" id="showPassword" onclick="togglePassword()">
+                                                <label class="form-check-label" for="showPassword">Tampilkan Kata Sandi</label>
+                                            </div>
+
+                                            <!-- Checkbox Remember Me -->
+                                            <div class="form-check mb-3">
+                                                <input type="checkbox" class="form-check-input" id="remember" name="remember">
+                                                <label class="form-check-label" for="remember">Ingat Saya</label>
+                                            </div>
                                         </div>
 
                                         <div class="mb-1 text-center d-grid">
@@ -97,14 +105,14 @@
 
         <script>
             function togglePassword() {
-                var passwordField = document.getElementById("password");
-                if (passwordField.type === "password") {
-                    passwordField.type = "text";
+                var password = document.getElementById("password");
+                if (password.type === "password") {
+                    password.type = "text";
                 } else {
-                    passwordField.type = "password";
+                    password.type = "password";
                 }
             }
-            </script>
+        </script>
 
          <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
          <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>

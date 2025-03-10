@@ -10,7 +10,16 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     public function login(){
-        return view('auth.login');
+        if (Auth::check()) {
+            // Jika user sudah login, langsung redirect ke halaman yang sesuai
+            if (Auth::user()->hasRole('superadmin')) {
+                return redirect()->route('dashboard-home');
+            } else {
+                return redirect()->route('presensi-home');
+            }
+        }
+
+        return view('auth.login'); // Jika belum login, tampilkan halaman login
     }
 
     public function reset_password(){
@@ -20,7 +29,10 @@ class AuthController extends Controller
     }
 
     public function check(Request $request){
-        if(Auth::attempt($request->only('email', 'password'))){
+        $credentials = $request->only('email', 'password');
+        $remember = $request->has('remember'); // Cek apakah remember me dicentang
+
+        if(Auth::attempt($credentials, $remember)){ // Gunakan remember me
             if(Auth::user()->hasRole('superadmin')){
                 return redirect()->route('dashboard-home');
             } else {
@@ -30,9 +42,10 @@ class AuthController extends Controller
                 return redirect()->route('presensi-home');
             }
         }else{
-            return redirect()->route('login');
+            return redirect()->route('login')->with('error', 'Email atau password salah');
         }
     }
+
 
     public function reset(Request $request){
         $request->validate([
@@ -50,8 +63,14 @@ class AuthController extends Controller
         return redirect()->route('presensi-home');
     }
 
-    public function logout(){
-        Auth::logout();
-        return redirect()->route('login');
+    public function logout(Request $request) {
+        Auth::logout(); // Logout user
+
+        // Hapus sesi yang masih tersimpan
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login')->with('success', 'Anda berhasil logout');
     }
+
 }
